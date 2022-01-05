@@ -5,6 +5,10 @@ tile_size = 54
 screen_width = map_width * tile_size
 screen_height = map_heigth * tile_size
 
+speed = 8
+gravity = 0.8
+jump_speed = -16
+
 level_map = [
 '                            ',
 '                            ',

@@ -34,15 +34,15 @@ class Level:
         player_x = player.rect.centerx
         direction_x = player.direction.x
 
-        if player_x < settings.screen_width / 4 and direction_x < 0:
-            self.world_shift = 8
+        if player_x < (settings.screen_width / 4) and direction_x < 0:
+            self.world_shift = settings.speed
             player.speed = 0
-        elif player_x > settings.screen_width - (settings.screen_width / 4) and direction_x > 0:
-            self.world_shift = -8
+        elif player_x > (3.0/4.0 * settings.screen_width) and direction_x > 0:
+            self.world_shift = -settings.speed
             player.speed = 0
         else:
             self.world_shift = 0
-            player.speed = 8
+            player.speed = settings.speed
 
     def horizontal_movement_collision(self):
         player = self.player.sprite
@@ -68,7 +68,7 @@ class Level:
                     player.direction.y = 0
                 elif player.direction.y < 0:
                     player.rect.top = sprite.rect.bottom
-                    player.direction.y = 0
+                    player.direction.y = 1
 
     def run(self):
 
