@@ -7,6 +7,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface((30, 60))
         self.image.fill('Red')
+        pos = (pos[0] * settings.tile_size, pos[1] * settings.tile_size)
         self.rect = self.image.get_rect(topleft=pos)
 
         # player movement
@@ -27,7 +28,6 @@ class Player(pygame.sprite.Sprite):
 
         if keys[pygame.K_SPACE] and self.direction.y == 0:
             self.jump()
-
 
     def apply_gravity(self):
         self.direction.y += self.gravity

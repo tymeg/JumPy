@@ -10,7 +10,7 @@ screen = pygame.display.set_mode(
     (settings.screen_width, settings.screen_height))
 pygame.display.set_caption("Gierka")
 clock = pygame.time.Clock()
-level = Level(settings.level_map, screen)
+level = Level(screen)
 
 # Main game loop
 while True:
