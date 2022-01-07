@@ -3,11 +3,12 @@ map_heigth = 15
 tile_size = 54
 
 screen_width = map_width * tile_size
-screen_height = map_heigth * tile_size
+screen_height = 800
 
 start_pos = (map_width/2, map_heigth-2)
 
 speed = 9
+speed_vertical = 12
 gravity = 0.8
 jump_speed = -20
 

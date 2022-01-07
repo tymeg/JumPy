@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-game/__pycache__/**
+game/__pycache__
 game/.vscode/**
 *.py[cod]
 *$py.class
