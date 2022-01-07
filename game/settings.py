@@ -1,3 +1,5 @@
+fps = 60
+
 map_width = 10
 map_heigth = 15
 tile_size = 54
@@ -8,9 +10,9 @@ screen_height = 800
 start_pos = (map_width/2, map_heigth-2)
 
 speed = 9
-speed_vertical = 12
 gravity = 0.8
-jump_speed = -20
+jump_speed = -21
+platform_thickness = 10
 
 # 0
 # 1
