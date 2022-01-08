@@ -7,7 +7,7 @@ tile_size = 54
 screen_width = map_width * tile_size
 screen_height = 800
 
-start_pos = (map_width/2, map_heigth-2)
+start_pos = (map_width/2, map_heigth-1)
 
 speed = 9
 gravity = 0.8

@@ -17,8 +17,6 @@ class Level:
         self.platforms = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
 
-        self.should_spawn = True
-
         # Platforms
         start_platform = Platform((0, settings.map_heigth-1), settings.map_width)
         self.platforms.add(start_platform)
@@ -32,8 +30,8 @@ class Level:
         player_sprite = Player(settings.start_pos)
         self.player.add(player_sprite)
 
-    def generate_new_platform(self, toplevel):
-        return Platform((randint(0, 8), toplevel-randint(2, 4)), randint(1, 3))
+    def generate_new_platform(self, toplevel): # make random heigth?
+        return Platform((randint(0, 8), toplevel - 3), randint(1, 3))
 
     def manage_platforms(self):
         while self.platforms.sprites()[0].rect.y > settings.screen_height:
@@ -44,8 +42,9 @@ class Level:
     def scroll_y(self):
         player = self.player.sprite
 
-        if player.rect.y < (settings.screen_height/3) and player.direction.y < 0:
+        if player.rect.y < (settings.screen_height/2) and player.direction.y > 0:
             self.world_shift = -settings.speed
+            player.rect.y += 1
             # player.gravity = 1.2
         else:
             self.world_shift = 0
@@ -72,29 +71,29 @@ class Level:
         player = self.player.sprite
         player.rect.x += player.direction.x * player.speed
 
-        # for sprite in self.platforms.sprites():
-        #     if sprite.rect.colliderect(player.rect):
+        # for platform in self.platforms.sprites():
+        #     if platform.rect.colliderect(player.rect):
         #         if player.direction.x < 0:
-        #             player.rect.left = sprite.rect.right
+        #             player.rect.left = platform.rect.right
         #         elif player.direction.x > 0:
-        #             player.rect.right = sprite.rect.left
+        #             player.rect.right = platform.rect.left
 
     def vertical_movement_collision(self):
+        self.player.sprite.apply_gravity()
         player = self.player.sprite
-        player.apply_gravity()
 
         for platform in self.platforms.sprites():
             if platform.rect.colliderect(player.rect):
-                if player.direction.y > 0:
+                if player.direction.y > 0 and player.rect.bottom - player.direction.y < platform.rect.top:
                     player.rect.bottom = platform.rect.top
                     player.direction.y = 0
                 # elif player.direction.y < 0:
-                #     player.rect.top = sprite.rect.bottom
+                #     player.rect.top = platform.rect.bottom
                 #     player.direction.y = 1
 
     def game_over(self):
         player = self.player.sprite
-        if player.rect.right < 0 or player.rect.left > settings.screen_width or player.rect.bottom > settings.screen_height:
+        if player.rect.right < 0 or player.rect.left > settings.screen_width or player.rect.bottom >= settings.screen_height:
             self.new_game()
 
     def run(self):
@@ -109,7 +108,6 @@ class Level:
         self.scroll_y()
         self.platforms.update(self.world_shift)
         self.platforms.draw(self.display_surface)
-
 
         # player
         self.player.update()

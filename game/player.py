@@ -3,12 +3,12 @@ import settings
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos):
+    def __init__(self, map_pos):
         super().__init__()
         self.image = pygame.Surface((30, 60))
         self.image.fill('Red')
-        pos = (pos[0] * settings.tile_size, pos[1] * settings.tile_size)
-        self.rect = self.image.get_rect(topleft=pos)
+        screen_pos = (map_pos[0] * settings.tile_size, map_pos[1] * settings.tile_size)
+        self.rect = self.image.get_rect(bottomleft=screen_pos)
 
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
