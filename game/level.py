@@ -31,7 +31,7 @@ class Level:
         self.player.add(player_sprite)
 
     def generate_new_platform(self, toplevel): # make random heigth?
-        return Platform((randint(0, 8), toplevel - 3), randint(1, 3))
+        return Platform((randint(0, 8), toplevel - randint(2, 4)), randint(2, 3))
 
     def manage_platforms(self):
         while self.platforms.sprites()[0].rect.y > settings.screen_height:
@@ -42,15 +42,11 @@ class Level:
     def scroll_y(self):
         player = self.player.sprite
 
-        if player.rect.y < (settings.screen_height/2) and player.direction.y > 0:
+        if player.rect.y < (settings.screen_height/3) and player.direction.y < 0:
             self.world_shift = -settings.speed
-            player.rect.y += 1
-            # player.gravity = 1.2
+            player.rect.y += settings.speed
         else:
             self.world_shift = 0
-            # player.gravity = settings.gravity
-            # player.jump_speed = settings.jump_speed
-            # player.speed = settings.speed
 
     # def scroll_x(self):
     #     player = self.player.sprite
@@ -84,7 +80,7 @@ class Level:
 
         for platform in self.platforms.sprites():
             if platform.rect.colliderect(player.rect):
-                if player.direction.y > 0 and player.rect.bottom - player.direction.y < platform.rect.top:
+                if player.direction.y > 0 and player.rect.bottom - player.direction.y <= platform.rect.top:
                     player.rect.bottom = platform.rect.top
                     player.direction.y = 0
                 # elif player.direction.y < 0:
