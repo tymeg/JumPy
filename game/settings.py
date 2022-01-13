@@ -20,7 +20,9 @@ gravity = 0.8
 jump_speed = -21
 
 # platform types with different chance of being generated
-platform_types = ['normal', 'normal', 'normal', 'normal', 'bounce', 'collapse']
+platform_types = ['collapse']
+# 'normal', 'normal', 'normal', 'normal', 'bounce',
+
 bounce_speed = -30
 platform_thickness = 10
 

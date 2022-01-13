@@ -11,17 +11,16 @@ class Level:
     def __init__(self, surface):
 
         # Custom events setup
-        self.MANAGE_PLATFORMS = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.MANAGE_PLATFORMS, 1000)
-
-        self.PLATFORM_COLLAPSE = pygame.USEREVENT + 2
+        self.PLATFORM_COLLAPSE = pygame.USEREVENT + 1
 
         # game setup
         self.display_surface = surface
         self.new_game()
 
     def new_game(self):
+        # reset
         self.collapsing = False
+        self.collapsing_platforms = []
         self.world_shift = 0
         self.world_descend_speed = 0
         self.platforms = pygame.sprite.Group()
@@ -45,19 +44,11 @@ class Level:
         return Platform((randint(0, 8), toplevel - randint(2, 4)), randint(2, 3), choice(settings.platform_types))
 
     def manage_platforms(self):
-        # world starts descending after first scroll
-        if self.world_descend_speed == 0 and self.platforms.sprites()[0].rect.y > settings.screen_height:
-            self.world_descend_speed = settings.start_world_descend_speed
-
-        removed = 0
-        while self.platforms.sprites()[0].rect.y > settings.screen_height:
+        if self.platforms.sprites()[0].rect.y > settings.screen_height:
             self.platforms.remove(self.platforms.sprites()[0])
-            removed += 1
-
-        toplevel = self.platforms.sprites()[len(self.platforms.sprites()) - 1].map_coords.y
-        for i in range(removed):
+            toplevel = self.platforms.sprites()[len(
+                self.platforms.sprites()) - 1].map_coords.y
             new_platform = self.generate_new_platform(toplevel)
-            toplevel = new_platform.map_coords.y
             self.platforms.add(new_platform)
 
     def scroll_y(self):
@@ -66,6 +57,9 @@ class Level:
         if player.rect.y < (settings.screen_height/3) and player.direction.y < 0:
             self.world_shift = -settings.scroll_speed
             player.rect.y += settings.scroll_speed
+            # world starts descending after first scroll
+            if self.world_descend_speed == 0:
+                self.world_descend_speed = settings.start_world_descend_speed
         else:
             self.world_shift = 0
 
@@ -89,7 +83,7 @@ class Level:
             player.jump_speed = settings.jump_speed
         elif platform.type == 'collapse' and not self.collapsing:
             pygame.time.set_timer(self.PLATFORM_COLLAPSE, 500, 1)
-            self.platform_collapse = platform
+            self.collapsing_platforms.append(platform)
             self.collapsing = True
 
     def vertical_movement_collision(self):
@@ -117,10 +111,10 @@ class Level:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == self.MANAGE_PLATFORMS:
-                self.manage_platforms()
             elif event.type == self.PLATFORM_COLLAPSE:
-                self.platforms.remove(self.platform_collapse)
+                self.platforms.remove(self.collapsing_platforms[0])
+                self.collapsing_platforms.pop(0)
+                
                 new_platform = self.generate_new_platform(
                     self.platforms.sprites()[len(self.platforms.sprites()) - 1].map_coords.y)
                 self.platforms.add(new_platform)
@@ -130,6 +124,7 @@ class Level:
 
         # platforms
         self.scroll_y()
+        self.manage_platforms()
         self.platforms.update(self.world_shift - self.world_descend_speed)
         self.platforms.draw(self.display_surface)
 
