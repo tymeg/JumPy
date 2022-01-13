@@ -2,7 +2,8 @@ title = "Pawel Jumper" # will probably change xD
 background_color = 'black' # might change for some image
 player_color = 'Red' # might change for some image
 font_name = 'verdana'
-font_size = 48
+big_font_size = 48
+small_font_size = 20
 
 fps = 60
 

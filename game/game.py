@@ -7,19 +7,20 @@ from player import Player
 from random import randint, choice
 
 
-class Level:
-    def __init__(self, surface, font):
+class Game:
+    def __init__(self, surface, fonts):
 
         # Custom events setup
         self.PLATFORM_COLLAPSE = pygame.USEREVENT + 1
 
         # game setup
         self.display_surface = surface
-        self.font = font
+        self.fonts = fonts
         self.new_game()
 
     def new_game(self):
         # reset
+        self.game_active = True
         self.score = 0
         self.collapsing = False
         self.collapsing_platforms = []
@@ -106,46 +107,73 @@ class Level:
                 #     player.rect.top = platform.rect.bottom
                 #     player.direction.y = 1
 
-    def game_over(self):
-        player = self.player.sprite
-        if player.rect.right < 0 or player.rect.left > settings.screen_width or player.rect.bottom >= settings.screen_height:
-            self.new_game()
+    def platform_collapse(self):
+        self.platforms.remove(self.collapsing_platforms[0])
+        self.collapsing_platforms.pop(0)
+
+        top_platform = self.platforms.sprites(
+        )[len(self.platforms.sprites()) - 1]
+        new_platform = self.generate_new_platform(
+            top_platform.map_coords.y, top_platform.number)
+        self.platforms.add(new_platform)
+        self.collapsing = False
 
     def display_score(self):
-        score_text = self.font.render(f"SCORE: {self.score}", True, 'Red')
-        text_pos = (settings.screen_width/2 - score_text.get_width() // 2, 50)
+        score_text = self.fonts['big_font'].render(f"SCORE: {self.score}", True, 'Red')
+        text_pos = (settings.screen_width/2 - score_text.get_width() // 2, 20)
         self.display_surface.blit(score_text, text_pos)
 
+    def game_over(self):
+        player = self.player.sprite
+        if player.rect.right < 0 or player.rect.left > settings.screen_width or player.rect.bottom >= settings.screen_height:       
+            player.rect.x, player.rect.y = settings.start_pos[0], settings.start_pos[1]
+            return True
+        return False
+
+    def show_game_over_screen(self):
+        text1 = self.fonts['big_font'].render("GAME OVER!", True, 'Red')
+        text2 = self.fonts['small_font'].render("PRESS ENTER TO RESTART", True, 'Red')
+        text1_pos = (settings.screen_width/2 - text1.get_width() // 2, settings.screen_height/2 - text1.get_height())
+        text2_pos = (settings.screen_width/2 - text2.get_width() // 2, settings.screen_height/2 + 20)
+        self.display_surface.blit(text1, text1_pos)
+        self.display_surface.blit(text2, text2_pos)
+
     def run(self):
-        self.display_surface.fill(settings.background_color)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == self.PLATFORM_COLLAPSE:
-                self.platforms.remove(self.collapsing_platforms[0])
-                self.collapsing_platforms.pop(0)
+            if self.game_active:
+                if event.type == self.PLATFORM_COLLAPSE:
+                    self.platform_collapse()
+            else:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:
+                        self.new_game()
+            
+        if self.game_active:
+            self.display_surface.fill(settings.background_color)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
 
-                top_platform = self.platforms.sprites(
-                )[len(self.platforms.sprites()) - 1]
-                new_platform = self.generate_new_platform(
-                    top_platform.map_coords.y, top_platform.number)
-                self.platforms.add(new_platform)
-                self.collapsing = False
+            # platforms
+            self.scroll_y()
+            self.manage_platforms()
+            self.platforms.update(self.world_shift - self.world_descend_speed)
+            self.platforms.draw(self.display_surface)
 
-        self.game_over()
+            # player
+            self.player.update(self.world_descend_speed)
+            self.horizontal_movement_collision()
+            self.vertical_movement_collision()
+            self.player.draw(self.display_surface)
 
-        # platforms
-        self.scroll_y()
-        self.manage_platforms()
-        self.platforms.update(self.world_shift - self.world_descend_speed)
-        self.platforms.draw(self.display_surface)
+            # score
+            self.display_score()
 
-        # player
-        self.player.update(self.world_descend_speed)
-        self.horizontal_movement_collision()
-        self.vertical_movement_collision()
-        self.player.draw(self.display_surface)
-
-        # score
-        self.display_score()
+            # game over
+            if self.game_over():
+                self.game_active = False
+                self.show_game_over_screen()

@@ -2,7 +2,7 @@ import pygame
 import sys
 
 import settings
-from level import Level
+from game import Game
 
 # Pygame setup
 pygame.init()
@@ -10,12 +10,14 @@ screen = pygame.display.set_mode(
     (settings.screen_width, settings.screen_height))
 pygame.display.set_caption(settings.title)
 clock = pygame.time.Clock()
-font = pygame.font.SysFont(settings.font_name, settings.font_size, True)
-level = Level(screen, font)
+big_font = pygame.font.SysFont(settings.font_name, settings.big_font_size, True)
+small_font = pygame.font.SysFont(settings.font_name, settings.small_font_size, True)
+fonts = {'big_font' : big_font, 'small_font' : small_font}
+game = Game(screen, fonts)
 
 # Main game loop
 while True:
-    level.run()
+    game.run()
 
     pygame.display.update()
     clock.tick(settings.fps)

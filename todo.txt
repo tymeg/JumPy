@@ -1,4 +1,4 @@
-score and scoreboard (with serialization)
+scoreboard (with serialization)
 horizontally moving platforms
 faster and faster world descending
 missiles spawning and going down
