@@ -7,7 +7,8 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface((30, 60))
         self.image.fill(settings.player_color)
-        screen_pos = (map_pos[0] * settings.tile_size, map_pos[1] * settings.tile_size)
+        screen_pos = (map_pos[0] * settings.tile_size,
+                      map_pos[1] * settings.tile_size)
         self.rect = self.image.get_rect(bottomleft=screen_pos)
 
         # player movement

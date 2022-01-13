@@ -1,6 +1,8 @@
 title = "Pawel Jumper" # will probably change xD
 background_color = 'black' # might change for some image
 player_color = 'Red' # might change for some image
+font_name = 'verdana'
+font_size = 48
 
 fps = 60
 
@@ -20,9 +22,7 @@ gravity = 0.8
 jump_speed = -21
 
 # platform types with different chance of being generated
-platform_types = ['collapse']
-# 'normal', 'normal', 'normal', 'normal', 'bounce',
-
+platform_types = ['normal', 'normal', 'normal', 'normal', 'bounce', 'collapse']
 bounce_speed = -30
 platform_thickness = 10
 
