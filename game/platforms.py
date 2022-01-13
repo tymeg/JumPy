@@ -4,12 +4,20 @@ import settings
 
 class Platform(pygame.sprite.Sprite):
 
-    def __init__(self, map_pos, length):
+    def __init__(self, map_pos, length, type):
         super().__init__()
         self.image = pygame.Surface(
             (length * settings.tile_size, settings.platform_thickness))
-        self.image.fill('grey')
  
+        # can be modified later
+        self.type = type
+        if type == 'normal':
+            self.image.fill('white')
+        elif type == 'bounce':
+            self.image.fill('blue')
+        elif type == 'collapse':
+            self.image.fill('azure4')
+
         self.map_coords = pygame.math.Vector2(map_pos[0], map_pos[1])
 
         screen_pos = (map_pos[0] * settings.tile_size, map_pos[1] * settings.tile_size)

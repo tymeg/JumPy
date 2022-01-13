@@ -6,13 +6,13 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, map_pos):
         super().__init__()
         self.image = pygame.Surface((30, 60))
-        self.image.fill('Red')
+        self.image.fill(settings.player_color)
         screen_pos = (map_pos[0] * settings.tile_size, map_pos[1] * settings.tile_size)
         self.rect = self.image.get_rect(bottomleft=screen_pos)
 
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
-        self.speed = settings.speed
+        self.speed = settings.horizontal_speed
         self.gravity = settings.gravity
         self.jump_speed = settings.jump_speed
 
@@ -36,5 +36,6 @@ class Player(pygame.sprite.Sprite):
     def jump(self):
         self.direction.y = self.jump_speed
 
-    def update(self):
+    def update(self, y_shift):
+        self.rect.y += y_shift
         self.get_input()

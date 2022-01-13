@@ -1,3 +1,7 @@
+title = "Pawel Jumper" # will probably change xD
+background_color = 'black' # might change for some image
+player_color = 'Red' # might change for some image
+
 fps = 60
 
 map_width = 10
@@ -9,9 +13,15 @@ screen_height = 800
 
 start_pos = (map_width/2, map_heigth-1)
 
-speed = 9
+start_world_descend_speed = 2
+horizontal_speed = 9
+scroll_speed = 12
 gravity = 0.8
 jump_speed = -21
+
+# platform types with different chance of being generated
+platform_types = ['normal', 'normal', 'normal', 'normal', 'bounce', 'collapse']
+bounce_speed = -30
 platform_thickness = 10
 
 # 0
