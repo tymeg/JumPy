@@ -1,8 +1,7 @@
 scoreboard (with serialization)
 horizontally moving platforms
 faster and faster world descending
-missiles spawning and going down
-menu/start game/game over screen
+menu?
 
 better graphics
 get rid of lags xd

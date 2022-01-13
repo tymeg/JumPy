@@ -12,11 +12,11 @@ class Platform(pygame.sprite.Sprite):
         # can be modified later
         self.type = type
         if type == 'normal':
-            self.image.fill('white')
+            self.image.fill(settings.normal_platform_color)
         elif type == 'bounce':
-            self.image.fill('blue')
+            self.image.fill(settings.bounce_platform_color)
         elif type == 'collapse':
-            self.image.fill('azure4')
+            self.image.fill(settings.collapse_platform_color)
 
         self.number = number
         self.map_coords = pygame.math.Vector2(map_pos[0], map_pos[1])
@@ -26,6 +26,6 @@ class Platform(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=screen_pos)
 
     def update(self, y_shift):
-        self.rect.y -= y_shift
+        self.rect.y += y_shift
         if self.rect.y > self.map_coords.y*settings.tile_size + settings.tile_size:
             self.map_coords.y += 1

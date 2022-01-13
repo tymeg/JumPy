@@ -1,6 +1,8 @@
 title = "Pawel Jumper" # will probably change xD
 background_color = 'black' # might change for some image
-player_color = 'Red' # might change for some image
+player_and_text_color = 'red' # might change for some image
+missile_color = 'orange'
+
 font_name = 'verdana'
 big_font_size = 48
 small_font_size = 20
@@ -15,6 +17,9 @@ screen_width = map_width * tile_size
 screen_height = 800
 
 start_pos = (map_width/2, map_heigth-1)
+player_dimensions = (30, 60)
+missile_dimensions = (20, 40)
+missile_speed = 5
 
 start_world_descend_speed = 2
 horizontal_speed = 9
@@ -24,8 +29,15 @@ jump_speed = -21
 
 # platform types with different chance of being generated
 platform_types = ['normal', 'normal', 'normal', 'normal', 'bounce', 'collapse']
+normal_platform_color = "white"
+bounce_platform_color = "green"
+collapse_platform_color = "grey40"
 bounce_speed = -30
 platform_thickness = 10
+
+# missiles - start spawn frequencies in miliseconds
+start_missile_spawn_frequency_down = 5000
+start_missile_spawn_frequency_up = 10000
 
 # 0
 # 1
