@@ -85,7 +85,7 @@ class Game:
     def scroll_y(self):
         player = self.player.sprite
 
-        if player.rect.y < (settings.screen_height/3) and player.direction.y < 0:
+        if player.rect.y < settings.scroll_border and player.direction.y < 0:
             self.world_shift = settings.scroll_speed
             player.rect.y += settings.scroll_speed
             for missile in self.missiles.sprites():
@@ -149,6 +149,24 @@ class Game:
             top_platform.map_coords.y, top_platform.number)
         self.platforms.add(new_platform)
         self.collapsing = False
+
+    def adjust_game_difficulty(self):
+        if self.score >= 50:
+            self.world_descend_speed = 3
+            self.missile_spawn_frequency_down = 4000 
+            self.missile_spawn_frequency_up = 8000
+        elif self.score >= 100:
+            self.world_descend_speed = 5
+            self.missile_spawn_frequency_down = 3000 
+            self.missile_spawn_frequency_up = 6000
+        elif self.score >= 150:
+            self.world_descend_speed = 6
+            self.missile_spawn_frequency_down = 2000 
+            self.missile_spawn_frequency_up = 4000
+        elif self.score >= 200:
+            self.world_descend_speed = 8
+            self.missile_spawn_frequency_down = 1000 
+            self.missile_spawn_frequency_up = 2000
 
     def display_score(self):
         score_text = self.fonts['big_font'].render(
@@ -223,6 +241,7 @@ class Game:
 
             # score
             self.display_score()
+            self.adjust_game_difficulty()
 
             # game over
             if self.game_over():

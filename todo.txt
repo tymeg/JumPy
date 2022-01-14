@@ -1,6 +1,6 @@
 scoreboard (with serialization)
-horizontally moving platforms
-faster and faster world descending
+horizontally (and vertically?) moving platforms
+faster and faster world descending, more missiles etc.
 menu?
 
 better graphics

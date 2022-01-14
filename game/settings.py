@@ -1,6 +1,6 @@
-title = "Pawel Jumper" # will probably change xD
-background_color = 'black' # might change for some image
-player_and_text_color = 'red' # might change for some image
+title = "Pawel Jumper"  # will probably change xD
+background_color = 'black'  # might change for some image
+player_and_text_color = 'red'  # might change for some image
 missile_color = 'orange'
 
 font_name = 'verdana'
@@ -16,14 +16,15 @@ tile_size = 54
 screen_width = map_width * tile_size
 screen_height = 800
 
-start_pos = (map_width/2, map_heigth-1)
+start_pos = (map_width / 2, map_heigth - 1)
 player_dimensions = (30, 60)
 missile_dimensions = (20, 40)
 missile_speed = 5
 
 start_world_descend_speed = 2
 horizontal_speed = 9
-scroll_speed = 12
+scroll_speed = 10
+scroll_border = 2 * (screen_height / 5)
 gravity = 0.8
 jump_speed = -21
 
@@ -52,6 +53,6 @@ start_missile_spawn_frequency_up = 10000
 # 10
 # 11  XXX
 # 12
-# 13 
+# 13
 # 14 XXXXXXXXXX
 #    0123456789
