@@ -151,20 +151,20 @@ class Game:
         self.collapsing = False
 
     def adjust_game_difficulty(self):
-        if self.score >= 25:
-            self.world_descend_speed = 3
+        if self.score >= 25 and self.score < 50:
+            self.world_descend_speed = 2
             self.missile_spawn_frequency_down = 4000 
             self.missile_spawn_frequency_up = 8000
-        elif self.score >= 50:
-            self.world_descend_speed = 5
+        elif self.score >= 50 and self.score < 100:
+            self.world_descend_speed = 3
             self.missile_spawn_frequency_down = 3000 
             self.missile_spawn_frequency_up = 6000
-        elif self.score >= 100:
-            self.world_descend_speed = 6
+        elif self.score >= 100 and self.score < 150:
+            self.world_descend_speed = 5
             self.missile_spawn_frequency_down = 2000 
             self.missile_spawn_frequency_up = 4000
         elif self.score >= 150:
-            self.world_descend_speed = 8
+            self.world_descend_speed = 7
             self.missile_spawn_frequency_down = 1000 
             self.missile_spawn_frequency_up = 2000
 

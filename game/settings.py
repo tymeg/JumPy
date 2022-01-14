@@ -18,10 +18,8 @@ screen_height = 800
 
 start_pos = (map_width / 2, map_heigth - 1)
 player_dimensions = (30, 60)
-missile_dimensions = (20, 40)
-missile_speed = 5
 
-start_world_descend_speed = 2
+start_world_descend_speed = 1
 horizontal_speed = 9
 scroll_speed = 10
 scroll_border = 2 * (screen_height / 5)
@@ -36,7 +34,9 @@ collapse_platform_color = "grey40"
 bounce_speed = -30
 platform_thickness = 10
 
-# missiles - start spawn frequencies in miliseconds
+# missiles - dimensions, speed, start spawn frequencies in miliseconds
+missile_dimensions = (20, 40)
+missile_speed = 5
 start_missile_spawn_frequency_down = 5000
 start_missile_spawn_frequency_up = 10000
 
