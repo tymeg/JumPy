@@ -61,9 +61,9 @@ class Game:
 
     def generate_new_platform(self, top_level, top_number):
         if not self.spawn_collapse_platforms:
-            return Platform((randint(0, 8), top_level - randint(2, 4)), randint(2, 3), choice(settings.platform_types[:-1]), top_number + 1)
+            return Platform((randint(0, 7), top_level - randint(2, 4)), randint(2, 3), choice(settings.platform_types[:-1]), top_number + 1)
         else:
-            return Platform((randint(0, 8), top_level - randint(2, 4)), randint(2, 3), choice(settings.platform_types), top_number + 1)
+            return Platform((randint(0, 7), top_level - randint(2, 4)), randint(2, 3), choice(settings.platform_types), top_number + 1)
 
     def manage_platforms_and_missiles(self):
         bottom_platform = self.platforms.sprites()[0]
@@ -151,19 +151,19 @@ class Game:
         self.collapsing = False
 
     def adjust_game_difficulty(self):
-        if self.score >= 50:
+        if self.score >= 25:
             self.world_descend_speed = 3
             self.missile_spawn_frequency_down = 4000 
             self.missile_spawn_frequency_up = 8000
-        elif self.score >= 100:
+        elif self.score >= 50:
             self.world_descend_speed = 5
             self.missile_spawn_frequency_down = 3000 
             self.missile_spawn_frequency_up = 6000
-        elif self.score >= 150:
+        elif self.score >= 100:
             self.world_descend_speed = 6
             self.missile_spawn_frequency_down = 2000 
             self.missile_spawn_frequency_up = 4000
-        elif self.score >= 200:
+        elif self.score >= 150:
             self.world_descend_speed = 8
             self.missile_spawn_frequency_down = 1000 
             self.missile_spawn_frequency_up = 2000

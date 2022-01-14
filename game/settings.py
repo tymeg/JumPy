@@ -26,7 +26,7 @@ horizontal_speed = 9
 scroll_speed = 10
 scroll_border = 2 * (screen_height / 5)
 gravity = 0.8
-jump_speed = -21
+jump_speed = -22
 
 # platform types with different chance of being generated
 platform_types = ['normal', 'normal', 'normal', 'normal', 'bounce', 'collapse']
