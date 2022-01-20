@@ -21,8 +21,8 @@ player_dimensions = (30, 60)
 
 start_world_descend_speed = 1
 horizontal_speed = 9
-scroll_speed = 10
-scroll_border = 2 * (screen_height / 5)
+start_scroll_speed = 10
+start_scroll_border = 2*screen_height/5
 gravity = 0.8
 jump_speed = -22
 
@@ -36,7 +36,7 @@ platform_thickness = 10
 
 # missiles - dimensions, speed, start spawn frequencies in miliseconds
 missile_dimensions = (20, 40)
-missile_speed = 5
+missile_speed = 4
 start_missile_spawn_frequency_down = 5000
 start_missile_spawn_frequency_up = 10000
 
