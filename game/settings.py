@@ -21,8 +21,8 @@ player_dimensions = (30, 60)
 
 start_world_descend_speed = 1
 horizontal_speed = 9
-start_scroll_speed = 10
-start_scroll_border = 2*screen_height/5
+scroll_speed = 10
+scroll_border = 2*screen_height/5
 gravity = 0.8
 jump_speed = -22
 

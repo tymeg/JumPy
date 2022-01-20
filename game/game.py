@@ -27,8 +27,6 @@ class Game:
         self.score = 0
         self.collapsing = False
         self.collapsing_platforms = []
-        self.scroll_speed = settings.start_scroll_speed
-        self.scroll_border = settings.start_scroll_border
         self.world_shift = 0
         self.world_descend_speed = 0
         self.spawn_missiles = False
@@ -87,11 +85,11 @@ class Game:
     def scroll_y(self):
         player = self.player.sprite
 
-        if player.rect.y < self.scroll_border and player.direction.y < 0:
-            self.world_shift = self.scroll_speed
-            player.rect.y += self.scroll_speed
+        if player.rect.y < settings.scroll_border and player.direction.y < 0:
+            self.world_shift = settings.scroll_speed
+            player.rect.y += settings.scroll_speed
             for missile in self.missiles.sprites():
-                missile.rect.y += self.scroll_speed
+                missile.rect.y += settings.scroll_speed
 
             # world starts descending, missiles spawn, collapse platforms spawn only after first scroll
             if self.world_descend_speed == 0:
@@ -147,7 +145,6 @@ class Game:
             self.world_descend_speed = 2
             self.missile_spawn_frequency_down = 4000 
             self.missile_spawn_frequency_up = 8000
-            # self.scroll_speed = 8
         elif self.score >= 50 and self.score < 100:
             self.world_descend_speed = 3
             self.missile_spawn_frequency_down = 3000 
@@ -155,13 +152,10 @@ class Game:
         elif self.score >= 100 and self.score < 150:
             self.missile_spawn_frequency_down = 2000 
             self.missile_spawn_frequency_up = 4000
-            # self.scroll_border = settings.screen_height/3
-            # self.scroll_speed = 5
         elif self.score >= 150:
             self.world_descend_speed = 4
             self.missile_spawn_frequency_down = 1000 
             self.missile_spawn_frequency_up = 2000
-            # self.scroll_speed = 3
 
     def display_score(self):
         score_text = self.fonts['big_font'].render(
