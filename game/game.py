@@ -53,17 +53,23 @@ class Game:
         self.player.add(player_sprite)
 
     def missile_queue(self):
-        pygame.time.set_timer(self.SPAWN_MISSILE, randint(self.missile_spawn_frequency_down, self.missile_spawn_frequency_up), 1)
+        pygame.time.set_timer(self.SPAWN_MISSILE, randint(
+            self.missile_spawn_frequency_down, self.missile_spawn_frequency_up), 1)
 
     def spawn_missile(self):
-        missile = Missile((randint(0, settings.screen_width - settings.missile_dimensions[0]), -100))
+        missile = Missile(
+            (randint(0, settings.screen_width - settings.missile_dimensions[0]), -100))
         self.missiles.add(missile)
 
     def generate_new_platform(self, top_level, top_number):
         if not self.spawn_collapse_platforms:
-            return Platform((randint(0, 7), top_level - randint(2, 4)), randint(2, 3), choice(settings.platform_types[:-1]), top_number + 1)
+            platform = Platform((randint(0, 7), top_level - randint(2, 4)), randint(
+                2, 3), choice(settings.platform_types[:-1]), top_number + 1)
+            return platform
         else:
-            return Platform((randint(0, 7), top_level - randint(2, 4)), randint(2, 3), choice(settings.platform_types), top_number + 1)
+            platform = Platform((randint(0, 7), top_level - randint(2, 4)),
+                                randint(2, 3), choice(settings.platform_types), top_number + 1)
+            return platform
 
     def manage_platforms_and_missiles(self):
         bottom_platform = self.platforms.sprites()[0]
@@ -76,7 +82,7 @@ class Game:
             new_platform = self.generate_new_platform(
                 top_platform.map_coords.y, top_platform.number)
             self.platforms.add(new_platform)
-        
+
         if self.missiles.sprites():
             bottom_missile = self.missiles.sprites()[0]
             if bottom_missile.rect.y > settings.screen_height:
@@ -93,16 +99,12 @@ class Game:
 
             # world starts descending, missiles spawn, collapse platforms spawn only after first scroll
             if self.world_descend_speed == 0:
-                self.world_descend_speed = settings.start_world_descend_speed       
+                self.world_descend_speed = settings.start_world_descend_speed
                 self.missile_queue()
                 self.spawn_missiles = True
                 self.spawn_collapse_platforms = True
         else:
             self.world_shift = 0
-
-    def horizontal_movement_collision(self):
-        player = self.player.sprite
-        player.rect.x += player.direction.x * player.speed
 
     def platform_type_action(self, platform):
         player = self.player.sprite
@@ -115,19 +117,35 @@ class Game:
             pygame.time.set_timer(self.PLATFORM_COLLAPSE, 500, 1)
             self.collapsing_platforms.append(platform)
             self.collapsing = True
+        elif platform.type == 'horizontal':
+            if platform.right:
+                player.rect.x += (settings.horizontal_platform_speed)
+            else:
+                player.rect.x -= (settings.horizontal_platform_speed)
+        elif platform.type == 'vertical':
+            if platform.up:
+                player.rect.y -= (settings.vertical_platform_speed)
+            else:
+                player.rect.y += (settings.vertical_platform_speed)
 
     def vertical_movement_collision(self):
         self.player.sprite.apply_gravity()
         player = self.player.sprite
 
         for platform in self.platforms.sprites():
-            if platform.rect.colliderect(player.rect):
-                if player.direction.y > 0 and player.rect.bottom - player.direction.y <= platform.rect.top:
+            stands = (platform.rect.top == player.rect.bottom and player.rect.right >=
+                      platform.rect.left and player.rect.left <= platform.rect.right)
+            if platform.rect.colliderect(player.rect) or stands:
+                if player.direction.y > 0 and player.rect.bottom - player.direction.y - 1 <= platform.rect.top:
                     player.rect.bottom = platform.rect.top
                     player.direction.y = 0
                     if self.score < platform.number:
                         self.score = platform.number
                     self.platform_type_action(platform)
+
+    def horizontal_movement(self):
+        player = self.player.sprite
+        player.rect.x += player.direction.x * player.speed
 
     def platform_collapse(self):
         self.platforms.remove(self.collapsing_platforms[0])
@@ -140,21 +158,21 @@ class Game:
         self.platforms.add(new_platform)
         self.collapsing = False
 
-    def adjust_game_difficulty(self):
+    def adjust_game_difficulty(self):  # get numbers from settings?
         if self.score >= 25 and self.score < 50:
             self.world_descend_speed = 2
-            self.missile_spawn_frequency_down = 4000 
+            self.missile_spawn_frequency_down = 4000
             self.missile_spawn_frequency_up = 8000
         elif self.score >= 50 and self.score < 100:
             self.world_descend_speed = 3
-            self.missile_spawn_frequency_down = 3000 
+            self.missile_spawn_frequency_down = 3000
             self.missile_spawn_frequency_up = 6000
         elif self.score >= 100 and self.score < 150:
-            self.missile_spawn_frequency_down = 2000 
+            self.missile_spawn_frequency_down = 2000
             self.missile_spawn_frequency_up = 4000
         elif self.score >= 150:
             self.world_descend_speed = 4
-            self.missile_spawn_frequency_down = 1000 
+            self.missile_spawn_frequency_down = 1000
             self.missile_spawn_frequency_up = 2000
 
     def display_score(self):
@@ -172,13 +190,16 @@ class Game:
                 hit_by_missile = True
                 break
 
-        if player.rect.right < 0 or player.rect.left > settings.screen_width or player.rect.bottom >= settings.screen_height or hit_by_missile:
+        game_over_position = (player.rect.right < 0 or player.rect.left >
+                              settings.screen_width or player.rect.bottom >= settings.screen_height or hit_by_missile)
+        if game_over_position:
             player.rect.x, player.rect.y = settings.start_pos[0], settings.start_pos[1]
             return True
         return False
 
     def show_game_over_screen(self):
-        text1 = self.fonts['big_font'].render("GAME OVER!", True, settings.player_and_text_color)
+        text1 = self.fonts['big_font'].render(
+            "GAME OVER!", True, settings.player_and_text_color)
         text2 = self.fonts['small_font'].render(
             "PRESS ENTER TO RESTART", True, settings.player_and_text_color)
         text1_pos = (settings.screen_width/2 - text1.get_width() //
@@ -202,7 +223,7 @@ class Game:
                         self.missile_queue()
             else:
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN:
+                    if event.key == pygame.K_RETURN:  # ENTER
                         self.new_game()
 
         if self.game_active:
@@ -212,25 +233,28 @@ class Game:
                     pygame.quit()
                     sys.exit()
 
-            # platforms
-            self.scroll_y()
+            # ====== STATE ======
+            # player
+            self.horizontal_movement()
+            self.vertical_movement_collision()
+            self.player.update(self.world_descend_speed)
+
+            # platforms and missiles
             self.manage_platforms_and_missiles()
             self.platforms.update(self.world_shift + self.world_descend_speed)
-            self.platforms.draw(self.display_surface)
-
-            # player
-            self.player.update(self.world_descend_speed)
-            self.horizontal_movement_collision()
-            self.vertical_movement_collision()
-            self.player.draw(self.display_surface)
-
-            # missiles
             self.missiles.update(self.world_descend_speed)
-            self.missiles.draw(self.display_surface)
 
-            # score
-            self.display_score()
+            # scroll screen
+            self.scroll_y()
+
+            # adjust game difficulty based on current score
             self.adjust_game_difficulty()
+
+            # ====== DISPLAY ======
+            self.platforms.draw(self.display_surface)
+            self.player.draw(self.display_surface)
+            self.missiles.draw(self.display_surface)
+            self.display_score()
 
             # game over
             if self.game_over():

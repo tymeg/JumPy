@@ -1,8 +1,5 @@
-scoreboard (with serialization)
-horizontally (and vertically?) moving platforms
-faster and faster world descending, more missiles etc.
-menu?
-change scroll speed and scroll border when changing world descend speed and missile spawn frequency
+scoreboard (with serialization or database)
+start screen and scoreboard screen
 
 better graphics
 get rid of lags xd

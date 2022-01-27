@@ -27,12 +27,22 @@ gravity = 0.8
 jump_speed = -22
 
 # platform types with different chance of being generated
-platform_types = ['normal', 'normal', 'normal', 'normal', 'bounce', 'collapse']
-normal_platform_color = "white"
-bounce_platform_color = "green"
-collapse_platform_color = "grey40"
-bounce_speed = -30
+platform_types = ['normal', 'normal', 'normal', 'normal', 'bounce', 'horizontal', 'vertical', 'collapse']
 platform_thickness = 10
+
+normal_platform_color = "white"
+
+bounce_platform_color = "green"
+bounce_speed = -30
+
+collapse_platform_color = "grey40"
+
+horizontal_platform_color = "dodgerblue"
+horizontal_platform_speed = 4
+
+vertical_platform_color = "violet"
+vertical_platform_speed = 2
+vertical_platform_range = 27 * vertical_platform_speed
 
 # missiles - dimensions, speed, start spawn frequencies in miliseconds
 missile_dimensions = (20, 40)
