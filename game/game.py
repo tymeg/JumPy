@@ -1,8 +1,9 @@
 import pygame
 import sys
 
-from platforms import Platform
 import settings
+from display import Display
+from platforms import Platform
 from player import Player
 from missile import Missile
 from random import randint, choice
@@ -16,8 +17,7 @@ class Game:
         self.SPAWN_MISSILE = pygame.USEREVENT + 2
 
         # game setup
-        self.display_surface = surface
-        self.fonts = fonts
+        self.display = Display(surface, fonts)
         self.new_game()
 
     def new_game(self):
@@ -28,11 +28,11 @@ class Game:
         self.collapsing = False
         self.collapsing_platforms = []
         self.world_shift = 0
-        self.world_descend_speed = 0
         self.spawn_missiles = False
         self.spawn_collapse_platforms = False
-        self.missile_spawn_frequency_down = settings.start_missile_spawn_frequency_down
-        self.missile_spawn_frequency_up = settings.start_missile_spawn_frequency_up
+
+        self.set_game_difficulty(settings.game_difficulty[0])
+        self.world_descend_speed = 0
 
         self.platforms = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
@@ -99,7 +99,7 @@ class Game:
 
             # world starts descending, missiles spawn, collapse platforms spawn only after first scroll
             if self.world_descend_speed == 0:
-                self.world_descend_speed = settings.start_world_descend_speed
+                self.world_descend_speed = settings.game_difficulty[0]['world_descend_speed']
                 self.missile_queue()
                 self.spawn_missiles = True
                 self.spawn_collapse_platforms = True
@@ -158,28 +158,20 @@ class Game:
         self.platforms.add(new_platform)
         self.collapsing = False
 
-    def adjust_game_difficulty(self):  # get numbers from settings?
-        if self.score >= 25 and self.score < 50:
-            self.world_descend_speed = 2
-            self.missile_spawn_frequency_down = 4000
-            self.missile_spawn_frequency_up = 8000
-        elif self.score >= 50 and self.score < 100:
-            self.world_descend_speed = 3
-            self.missile_spawn_frequency_down = 3000
-            self.missile_spawn_frequency_up = 6000
-        elif self.score >= 100 and self.score < 150:
-            self.missile_spawn_frequency_down = 2000
-            self.missile_spawn_frequency_up = 4000
-        elif self.score >= 150:
-            self.world_descend_speed = 4
-            self.missile_spawn_frequency_down = 1000
-            self.missile_spawn_frequency_up = 2000
+    def set_game_difficulty(self, parameters):
+        self.world_descend_speed = parameters['world_descend_speed']
+        self.missile_spawn_frequency_down = parameters['missile_spawn_frequency_down']
+        self.missile_spawn_frequency_up = parameters['missile_spawn_frequency_up']
 
-    def display_score(self):
-        score_text = self.fonts['big_font'].render(
-            f"SCORE: {self.score}", True, settings.player_and_text_color)
-        text_pos = (settings.screen_width/2 - score_text.get_width() // 2, 20)
-        self.display_surface.blit(score_text, text_pos)
+    def adjust_game_difficulty(self):
+        if self.score >= settings.score_thresholds[0] and self.score < settings.score_thresholds[1]:
+            self.set_game_difficulty(settings.game_difficulty[1])
+        elif self.score >= settings.score_thresholds[1] and self.score < settings.score_thresholds[2]:
+            self.set_game_difficulty(settings.game_difficulty[2])
+        elif self.score >= settings.score_thresholds[2] and self.score < settings.score_thresholds[3]:
+            self.set_game_difficulty(settings.game_difficulty[3])
+        elif self.score >= settings.score_thresholds[3]:
+            self.set_game_difficulty(settings.game_difficulty[4])
 
     def game_over(self):
         player = self.player.sprite
@@ -196,18 +188,6 @@ class Game:
             player.rect.x, player.rect.y = settings.start_pos[0], settings.start_pos[1]
             return True
         return False
-
-    def show_game_over_screen(self):
-        text1 = self.fonts['big_font'].render(
-            "GAME OVER!", True, settings.player_and_text_color)
-        text2 = self.fonts['small_font'].render(
-            "PRESS ENTER TO RESTART", True, settings.player_and_text_color)
-        text1_pos = (settings.screen_width/2 - text1.get_width() //
-                     2, settings.screen_height/2 - text1.get_height())
-        text2_pos = (settings.screen_width/2 - text2.get_width() //
-                     2, settings.screen_height/2 + 20)
-        self.display_surface.blit(text1, text1_pos)
-        self.display_surface.blit(text2, text2_pos)
 
     def run(self):
         for event in pygame.event.get():
@@ -227,7 +207,7 @@ class Game:
                         self.new_game()
 
         if self.game_active:
-            self.display_surface.fill(settings.background_color)
+            self.display.surface.fill(settings.background_color)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -251,12 +231,9 @@ class Game:
             self.adjust_game_difficulty()
 
             # ====== DISPLAY ======
-            self.platforms.draw(self.display_surface)
-            self.player.draw(self.display_surface)
-            self.missiles.draw(self.display_surface)
-            self.display_score()
+            self.display.game(self.platforms, self.player, self.missiles, self.score)
 
             # game over
             if self.game_over():
                 self.game_active = False
-                self.show_game_over_screen()
+                self.display.game_over()

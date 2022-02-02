@@ -1,5 +1,5 @@
 import pygame
-import sys
+#import sys
 
 import settings
 from game import Game
