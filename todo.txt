@@ -1,6 +1,5 @@
 scoreboard (with serialization or database)
-start screen and scoreboard screen
-pause (ESC)
+scoreboard screen (on/after game over screen)
 type annotations
 comments and docs
 makefile (Distributing Python Modules)

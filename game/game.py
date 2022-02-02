@@ -18,12 +18,12 @@ class Game:
 
         # game setup
         self.display = Display(surface, fonts)
-        self.new_game()
+        self.state = 'init'
 
     def new_game(self):
         # reset
         pygame.event.clear()
-        self.game_active = True
+        self.state = 'active'
         self.score = 0
         self.collapsing = False
         self.collapsing_platforms = []
@@ -190,29 +190,31 @@ class Game:
         return False
 
     def run(self):
+        # event queue
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if self.game_active:
+            if self.state == 'active':
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE: # ESC
+                        self.display.pause()
+                        self.state = 'pause'
+                # game events
                 if event.type == self.PLATFORM_COLLAPSE:
                     self.platform_collapse()
-                elif event.type == self.SPAWN_MISSILE:
+                if event.type == self.SPAWN_MISSILE:
                     if self.spawn_collapse_platforms:
                         self.spawn_missile()
                         self.missile_queue()
             else:
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN:  # ENTER
+                    if (self.state == 'start' or self.state == 'game_over') and event.key == pygame.K_RETURN:  # ENTER
                         self.new_game()
-
-        if self.game_active:
-            self.display.surface.fill(settings.background_color)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
+                        self.state = 'active'
+                    elif self.state == 'pause' and event.key == pygame.K_ESCAPE:  # ESC
+                        self.state = 'active'
+        if self.state == 'active':
             # ====== STATE ======
             # player
             self.horizontal_movement()
@@ -231,9 +233,14 @@ class Game:
             self.adjust_game_difficulty()
 
             # ====== DISPLAY ======
-            self.display.game(self.platforms, self.player, self.missiles, self.score)
+            self.display.game(self.platforms, self.player,
+                              self.missiles, self.score)
 
             # game over
             if self.game_over():
-                self.game_active = False
                 self.display.game_over()
+                self.state = 'game_over'
+
+        elif self.state == 'init':
+            self.display.menu()
+            self.state = 'start'
