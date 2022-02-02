@@ -1,7 +1,8 @@
-#import pygame
-#import sys
+import pygame
+import sys
 
 import settings
+import scoreboard
 
 
 class Display:
@@ -52,10 +53,37 @@ class Display:
         text1 = self.fonts['big_font'].render(
             "GAME OVER!", True, settings.player_and_text_color)
         text2 = self.fonts['small_font'].render(
-            "PRESS ENTER TO RESTART", True, settings.player_and_text_color)
+            "PRESS ENTER TO CONTINUE", True, settings.player_and_text_color)
         text1_pos = (settings.screen_width/2 - text1.get_width() //
                      2, settings.screen_height/2 - text1.get_height())
         text2_pos = (settings.screen_width/2 - text2.get_width() //
                      2, settings.screen_height/2 + 20)
         self.surface.blit(text1, text1_pos)
         self.surface.blit(text2, text2_pos)
+
+    def input(self, nick):
+        self.surface.fill(settings.background_color)
+        text1 = self.fonts['small_font'].render(
+            "ENTER YOUR NAME:", True, settings.player_and_text_color)
+        text2 = self.fonts['small_font'].render(
+            nick, True, settings.player_and_text_color)
+
+        self.surface.blit(text1, (50, 50))
+        self.surface.blit(text2, (50, 75))
+
+    def scoreboard(self):
+        self.surface.fill(settings.background_color)
+        text = self.fonts['big_font'].render(
+            "SCOREBOARD", True, settings.player_and_text_color)
+        self.surface.blit(text, (settings.screen_width /
+                          2 - text.get_width() // 2, 50))
+        scores = scoreboard.get_scoreboard()
+
+        for count, row in enumerate(scores):
+            left = self.fonts['small_font'].render(str(
+                count + 1) + ". " + row.nick, True, settings.player_and_text_color)
+            right = self.fonts['small_font'].render(
+                str(row.score), True, settings.player_and_text_color)
+            self.surface.blit(left, (50, 130 + count*30))
+            self.surface.blit(right, (settings.screen_width -
+                              50 - right.get_width(), 130 + count*30))

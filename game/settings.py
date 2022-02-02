@@ -57,7 +57,10 @@ missile_speed = 4
 # score thresholds and corresponding game difficulties
 score_thresholds = [25, 50, 100, 150]
 game_difficulty = [{'world_descend_speed': 1, 'missile_spawn_frequency_down': 5000, 'missile_spawn_frequency_up': 10000},
-                   {'world_descend_speed': 2, 'missile_spawn_frequency_down': 4000, 'missile_spawn_frequency_up': 8000},
-                   {'world_descend_speed': 3, 'missile_spawn_frequency_down': 6000, 'missile_spawn_frequency_up': 6000},
-                   {'world_descend_speed': 3, 'missile_spawn_frequency_down': 2000, 'missile_spawn_frequency_up': 40000},
+                   {'world_descend_speed': 2, 'missile_spawn_frequency_down': 4000,
+                       'missile_spawn_frequency_up': 8000},
+                   {'world_descend_speed': 3, 'missile_spawn_frequency_down': 6000,
+                       'missile_spawn_frequency_up': 6000},
+                   {'world_descend_speed': 3, 'missile_spawn_frequency_down': 2000,
+                       'missile_spawn_frequency_up': 40000},
                    {'world_descend_speed': 4, 'missile_spawn_frequency_down': 1000, 'missile_spawn_frequency_up': 2000}]

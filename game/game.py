@@ -1,12 +1,13 @@
 import pygame
 import sys
+from random import randint, choice
 
 import settings
 from display import Display
 from platforms import Platform
 from player import Player
 from missile import Missile
-from random import randint, choice
+import scoreboard
 
 
 class Game:
@@ -24,6 +25,7 @@ class Game:
         # reset
         pygame.event.clear()
         self.state = 'active'
+        self.nick = ""
         self.score = 0
         self.collapsing = False
         self.collapsing_platforms = []
@@ -189,15 +191,16 @@ class Game:
             return True
         return False
 
-    def run(self):
-        # event queue
+    def event_queue(self):
         for event in pygame.event.get():
+            # quit game
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if self.state == 'active':
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE: # ESC
+                    # pause
+                    if event.key == pygame.K_ESCAPE:
                         self.display.pause()
                         self.state = 'pause'
                 # game events
@@ -209,11 +212,36 @@ class Game:
                         self.missile_queue()
             else:
                 if event.type == pygame.KEYDOWN:
-                    if (self.state == 'start' or self.state == 'game_over') and event.key == pygame.K_RETURN:  # ENTER
+                    if self.state == 'start' and event.key == pygame.K_RETURN:  # ENTER
                         self.new_game()
                         self.state = 'active'
                     elif self.state == 'pause' and event.key == pygame.K_ESCAPE:  # ESC
                         self.state = 'active'
+                    elif self.state == 'game_over' and event.key == pygame.K_RETURN:  # ENTER
+                        if scoreboard.is_good_enough_score(self.score):
+                            self.display.input("")
+                            self.state = 'input'
+                        else:
+                            self.new_game()
+                            self.state = 'active'
+                    elif self.state == 'input':  # get nick from user
+                        if event.key == pygame.K_RETURN:
+                            if self.nick:
+                                scoreboard.add_score(self.score, self.nick)
+                                self.display.scoreboard()
+                                self.state = 'start'
+                        elif event.key == pygame.K_BACKSPACE:
+                            if self.nick:
+                                self.nick = self.nick[:-1]
+                                self.display.input(self.nick)
+                        elif len(self.nick) <= 10:
+                            self.nick += event.unicode
+                            self.display.input(self.nick)
+
+    def run(self):
+        # event queue
+        self.event_queue()
+
         if self.state == 'active':
             # ====== STATE ======
             # player

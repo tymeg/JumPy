@@ -1,8 +1,9 @@
-scoreboard (with serialization or database)
-scoreboard screen (on/after game over screen)
+better title and menu screen xd
+
 type annotations
 comments and docs
 makefile (Distributing Python Modules)
 
-better graphics
+(better graphics
 get rid of lags xd
+music)

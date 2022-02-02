@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 game/__pycache__/
 game/.vscode/
+.vscode/
 *.py[cod]
 *$py.class
 
@@ -83,3 +84,6 @@ celerybeat-schedule
 .venv/
 venv/
 ENV/
+
+# scoreboard
+game/scoreboard.sqlite
