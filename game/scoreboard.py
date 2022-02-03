@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, select, delete
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
+from typing import List
 
 base = declarative_base()
 engine = create_engine('sqlite:///' + os.path.join(os.path.dirname(
@@ -17,7 +18,7 @@ class Scoreboard(base):
     score = Column(Integer, nullable=False)
 
 
-def is_good_enough_score(score):
+def is_good_enough_score(score: int) -> bool:
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -27,7 +28,7 @@ def is_good_enough_score(score):
     return len(scores_ascending) < 10 or score > scores_ascending[0].score
 
 
-def add_score(score, nick):
+def add_score(score: int, nick: str) -> None:
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -44,7 +45,7 @@ def add_score(score, nick):
         session.commit()
 
 
-def get_scoreboard():
+def get_scoreboard() -> List[Scoreboard]:
     Session = sessionmaker(bind=engine)
     session = Session()
 

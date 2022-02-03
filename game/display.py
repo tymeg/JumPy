@@ -1,31 +1,30 @@
 import pygame
-import sys
+from typing import Dict
 
 import settings
 import scoreboard
 
-
 class Display:
 
-    def __init__(self, surface, logo, fonts):
+    def __init__(self, surface: pygame.Surface, logo: pygame.Surface, fonts: Dict[str, pygame.font.Font]) -> None:
         self.surface = surface
         self.logo = logo
         self.fonts = fonts
 
-    def game(self, platforms, player, missiles, score):
+    def game(self, platforms : pygame.sprite.Group, player : pygame.sprite.GroupSingle, missiles : pygame.sprite.Group, score : int) -> None:
         self.surface.fill(settings.background_color)
         platforms.draw(self.surface)
         player.draw(self.surface)
         missiles.draw(self.surface)
         self.score(score)
 
-    def score(self, score):
+    def score(self, score : int) -> None:
         score_text = self.fonts['big_font'].render(
             f"SCORE: {score}", True, settings.player_and_text_color)
         text_pos = (settings.screen_width/2 - score_text.get_width() // 2, 20)
         self.surface.blit(score_text, text_pos)
 
-    def menu(self):
+    def menu(self) -> None:
         self.surface.fill(settings.background_color)
 
         text1 = self.fonts['big_font'].render(
@@ -48,7 +47,7 @@ class Display:
         self.surface.blit(text2, text2_pos)
         self.surface.blit(text3, text3_pos)
 
-    def pause(self):
+    def pause(self) -> None:
         text1 = self.fonts['small_font'].render(
             "PAUSE", True, settings.player_and_text_color)
         text2 = self.fonts['small_font'].render(
@@ -61,7 +60,7 @@ class Display:
         self.surface.blit(text1, text1_pos)
         self.surface.blit(text2, text2_pos)
 
-    def game_over(self):
+    def game_over(self) -> None:
         text1 = self.fonts['big_font'].render(
             "GAME OVER!", True, settings.player_and_text_color)
         text2 = self.fonts['small_font'].render(
@@ -74,7 +73,7 @@ class Display:
         self.surface.blit(text1, text1_pos)
         self.surface.blit(text2, text2_pos)
 
-    def input(self, nick):
+    def input(self, nick : str) -> None:
         self.surface.fill(settings.background_color)
         text1 = self.fonts['small_font'].render(
             "ENTER YOUR NAME:", True, settings.player_and_text_color)
@@ -84,7 +83,7 @@ class Display:
         self.surface.blit(text1, (50, 50))
         self.surface.blit(text2, (50, 80))
 
-    def scoreboard(self):
+    def scoreboard(self) -> None:
         self.surface.fill(settings.background_color)
         text = self.fonts['big_font'].render(
             "SCOREBOARD", True, settings.player_and_text_color)

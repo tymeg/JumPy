@@ -1,8 +1,9 @@
 import pygame
 import settings
+from typing import Tuple
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, map_pos):
+    def __init__(self, map_pos: Tuple[int, int]) -> None:
         super().__init__()
         self.image = pygame.Surface(settings.player_dimensions)
         self.image.fill(settings.player_and_text_color)
@@ -16,7 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.gravity = settings.gravity
         self.direction = pygame.math.Vector2(0, 0)
 
-    def get_input(self):
+    def get_input(self) -> None:
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_RIGHT]:
@@ -29,13 +30,13 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_SPACE] and self.direction.y == 0:
             self.jump()
 
-    def apply_gravity(self):
+    def apply_gravity(self) -> None:
         self.direction.y += self.gravity
         self.rect.y += self.direction.y
 
-    def jump(self):
+    def jump(self) -> None:
         self.direction.y = self.jump_speed
 
-    def update(self, y_shift):
+    def update(self, y_shift: int) -> None:
         self.rect.y += y_shift
         self.get_input()

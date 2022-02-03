@@ -1,5 +1,6 @@
 import pygame
 import sys
+from typing import Dict
 from random import randint, choice
 
 import settings
@@ -11,7 +12,7 @@ import scoreboard
 
 
 class Game:
-    def __init__(self, surface, logo, fonts):
+    def __init__(self, surface: pygame.Surface, logo: pygame.Surface, fonts: Dict[str, pygame.font.Font]) -> None:
 
         # Custom events setup
         self.PLATFORM_COLLAPSE = pygame.USEREVENT + 1
@@ -21,7 +22,7 @@ class Game:
         self.display = Display(surface, logo, fonts)
         self.state = 'init'
 
-    def new_game(self):
+    def new_game(self) -> None:
         # reset
         pygame.event.clear()
         self.state = 'active'
@@ -56,16 +57,16 @@ class Game:
         player_sprite = Player(settings.start_pos)
         self.player.add(player_sprite)
 
-    def missile_queue(self):
+    def missile_queue(self) -> None:
         pygame.time.set_timer(self.SPAWN_MISSILE, randint(
             self.missile_spawn_frequency_down, self.missile_spawn_frequency_up), 1)
 
-    def spawn_missile(self):
+    def spawn_missile(self) -> None:
         missile = Missile(
             (randint(0, settings.screen_width - settings.missile_dimensions[0]), -100))
         self.missiles.add(missile)
 
-    def generate_new_platform(self, top_level, top_number):
+    def generate_new_platform(self, top_level: int, top_number: int) -> Platform:
         types = settings.platform_types
         if not self.spawn_collapse_platforms:
             types = types[:-1]
@@ -75,7 +76,7 @@ class Game:
             settings.platform_length[0], settings.platform_length[1]), choice(types), top_number + 1)
         return platform
 
-    def manage_platforms_and_missiles(self):
+    def manage_platforms_and_missiles(self) -> None:
         bottom_platform = self.platforms.sprites()[0]
 
         if bottom_platform.rect.y > settings.screen_height:
@@ -92,7 +93,7 @@ class Game:
             if bottom_missile.rect.y > settings.screen_height:
                 self.missiles.remove(bottom_missile)
 
-    def scroll_y(self):
+    def scroll_y(self) -> None:
         player = self.player.sprite
 
         if player.rect.y < settings.scroll_border and player.direction.y < 0:
@@ -110,7 +111,7 @@ class Game:
         else:
             self.world_shift = 0
 
-    def platform_type_action(self, platform):
+    def platform_type_action(self, platform: Platform) -> None:
         player = self.player.sprite
 
         if platform.type == 'bounce':
@@ -133,7 +134,7 @@ class Game:
             else:
                 player.rect.y += (settings.vertical_platform_speed)
 
-    def vertical_movement_collision(self):
+    def vertical_movement_collision(self) -> None:
         self.player.sprite.apply_gravity()
         player = self.player.sprite
 
@@ -148,11 +149,11 @@ class Game:
                         self.score = platform.number
                     self.platform_type_action(platform)
 
-    def horizontal_movement(self):
+    def horizontal_movement(self) -> None:
         player = self.player.sprite
         player.rect.x += player.direction.x * player.speed
 
-    def platform_collapse(self):
+    def platform_collapse(self) -> None:
         self.platforms.remove(self.collapsing_platforms[0])
         self.collapsing_platforms.pop(0)
 
@@ -163,12 +164,12 @@ class Game:
         self.platforms.add(new_platform)
         self.collapsing = False
 
-    def set_game_difficulty(self, parameters):
+    def set_game_difficulty(self, parameters: Dict[str, int]) -> None:
         self.world_descend_speed = parameters['world_descend_speed']
         self.missile_spawn_frequency_down = parameters['missile_spawn_frequency_down']
         self.missile_spawn_frequency_up = parameters['missile_spawn_frequency_up']
 
-    def adjust_game_difficulty(self):
+    def adjust_game_difficulty(self) -> None:
         if self.score >= settings.score_thresholds[0] and self.score < settings.score_thresholds[1]:
             self.set_game_difficulty(settings.game_difficulty[1])
         elif self.score >= settings.score_thresholds[1] and self.score < settings.score_thresholds[2]:
@@ -178,7 +179,7 @@ class Game:
         elif self.score >= settings.score_thresholds[3]:
             self.set_game_difficulty(settings.game_difficulty[4])
 
-    def game_over(self):
+    def game_over(self) -> bool:
         player = self.player.sprite
 
         hit_by_missile = False
@@ -194,18 +195,18 @@ class Game:
             return True
         return False
 
-    def resume_collapse(self):
+    def resume_collapse(self) -> None:
         remaining_collapse_time = self.collapse_time - self.pause_time
         pygame.time.set_timer(self.PLATFORM_COLLAPSE,
                               remaining_collapse_time, 1)
         self.collapse_time = -1
 
-    def resume_missiles(self):
+    def resume_missiles(self) -> None:
         remaining_missile_time = self.missile_time - self.pause_time
         pygame.time.set_timer(self.SPAWN_MISSILE, remaining_missile_time, 1)
         self.missile_time = -1
 
-    def event_queue(self):
+    def event_queue(self) -> None:
         for event in pygame.event.get():
             # quit game
             if event.type == pygame.QUIT:
@@ -264,7 +265,7 @@ class Game:
                             self.nick += event.unicode
                             self.display.input(self.nick)
 
-    def run(self):
+    def run(self) -> None:
         # event queue
         self.event_queue()
 

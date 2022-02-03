@@ -1,9 +1,0 @@
-better title and menu screen xd
-
-type annotations
-comments and docs
-makefile (Distributing Python Modules)
-
-(better graphics
-get rid of lags xd
-music)

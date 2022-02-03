@@ -1,10 +1,11 @@
 import pygame
 import settings
+from typing import Tuple
 
 
 class Platform(pygame.sprite.Sprite):
 
-    def __init__(self, map_pos, length, type, number):
+    def __init__(self, map_pos: Tuple[int, int], length: int, type: str, number: int) -> None:
         super().__init__()
         self.image = pygame.Surface(
             (length * settings.tile_size, settings.platform_thickness))
@@ -17,7 +18,6 @@ class Platform(pygame.sprite.Sprite):
                       map_pos[1] * settings.tile_size)
         self.rect = self.image.get_rect(topleft=screen_pos)
 
-        # can be modified later
         self.type = type
         if type == 'normal':
             self.image.fill(settings.normal_platform_color)
@@ -33,7 +33,7 @@ class Platform(pygame.sprite.Sprite):
             self.up = True
             self.level = 0
 
-    def update(self, y_shift):
+    def update(self, y_shift: int) -> None:
         self.rect.y += y_shift
         if self.rect.y > self.map_coords.y*settings.tile_size + settings.tile_size:
             self.map_coords.y += 1

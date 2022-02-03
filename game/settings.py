@@ -1,5 +1,4 @@
 import os
-import pygame
 
 # title and logo
 title = "JumPy"
