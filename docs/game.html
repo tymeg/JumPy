@@ -1,0 +1,1505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>game API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>game</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import pygame
+import sys
+from typing import Dict
+from random import randint, choice
+
+import settings
+from display import Display
+from platforms import Platform
+from player import Player
+from missile import Missile
+import scoreboard
+
+
+class Game:
+    &#39;&#39;&#39;
+    A game object manages game mechanics and states
+
+    Args:
+        surface (pygame.Surface): game screen
+        logo (pygame.Surface): game logo
+        fonts (Dict[str, pygame.font.Font]): dictionary of fonts
+
+    Attributes:
+        display (Display): a display object to which Game delegates drawing things to the screen
+        state (str): game state - init | menu | start | pause | game_over | scoreboard | input
+        nick (str): current player&#39;s nick
+        score (int): current score
+        platforms (pygame.sprite.Group): group of current platforms in the game
+        player (pygame.sprite.GroupSingle): single group containing the player
+        missiles (pygame.sprite.Group): group of current missiles in the game
+        PLATFORM_COLLAPSE (int): custom event of a collapsing platform
+        SPAWN_MISSILE (int): custom event of spawning a missile
+        collapsing (bool): tells if there is a platform collapsing
+        collapsing_platforms (list[Platform]): current collapsing platforms
+        world_shift (int): world shift (positive when jumping high)
+        spawn_missiles (bool): tells if missiles should be spawned
+        spawn_collapse_platforms (bool): tells if collapse platforms should be spawned
+        missile_spawn_frequency_down (int): current minimal missile spawn frequency
+        missile_spawn_frequency_up (int): current maximal missile spawn frequency
+        pause_time (int): clock ticks in the moment of pausing
+        missile_time (int): clock ticks in the moment of SPAWN_MISSILE event toggle during pause
+        collapse_time (int): clock ticks in the moment of PLATFORM_COLLAPSE event toggle during pause
+    &#39;&#39;&#39;
+
+    def __init__(self, surface: pygame.Surface, logo: pygame.Surface, fonts: Dict[str, pygame.font.Font]) -&gt; None:
+
+        # Custom events setup
+        self.PLATFORM_COLLAPSE = pygame.USEREVENT + 1
+        self.SPAWN_MISSILE = pygame.USEREVENT + 2
+
+        # game setup
+        self.display = Display(surface, logo, fonts)
+        self.state = &#39;init&#39;
+
+# ============================ NEW GAME ===============================
+
+    def new_game(self) -&gt; None:
+        &#39;&#39;&#39;
+        Resets game settings, spawns first platforms and player on the bottom platform
+        &#39;&#39;&#39;
+        # reset
+        pygame.event.clear()
+        self.state = &#39;active&#39;
+        self.nick = &#34;&#34;
+        self.score = 0
+        self.collapsing = False
+        self.collapsing_platforms = []
+        self.world_shift = 0
+        self.spawn_missiles = False
+        self.missile_time = -1
+        self.spawn_collapse_platforms = False
+        self.collapse_time = -1
+
+        # start game difficulty
+        self.set_game_difficulty(settings.game_difficulty[0])
+        self.world_descend_speed = 0
+
+        # groups of objects
+        self.platforms = pygame.sprite.Group()
+        self.player = pygame.sprite.GroupSingle()
+        self.missiles = pygame.sprite.Group()
+
+        # first 9 platforms
+        start_platform = Platform(
+            (0, settings.map_height-1), settings.map_width, &#39;normal&#39;, 0)
+        self.platforms.add(start_platform)
+        top_level, top_number = start_platform.map_coords.y, 0
+        for i in range(9):
+            new_platform = self.generate_new_platform(top_level, top_number)
+            top_level, top_number = new_platform.map_coords.y, new_platform.number
+            self.platforms.add(new_platform)
+
+        # player
+        player_sprite = Player(settings.start_pos)
+        self.player.add(player_sprite)
+
+# ================== MISSILE AND PLATFORM SPAWN ===================
+
+    def missile_queue(self) -&gt; None:
+        &#39;&#39;&#39;
+        Sets timer for a single missile spawn
+        &#39;&#39;&#39;
+        pygame.time.set_timer(self.SPAWN_MISSILE, randint(
+            self.missile_spawn_frequency_down, self.missile_spawn_frequency_up), 1)
+
+    def spawn_missile(self) -&gt; None:
+        &#39;&#39;&#39;
+        Spawns a missile on random x position, 100 pixels above screen
+        &#39;&#39;&#39;
+        missile = Missile(
+            (randint(0, settings.screen_width - settings.missile_dimensions[0]), -100))
+        self.missiles.add(missile)
+
+    def generate_new_platform(self, top_level: int, top_number: int) -&gt; Platform:
+        &#39;&#39;&#39;
+        Generates a random single platform
+
+        Args:
+            top_level (int): tile level of the current highest platform
+            top_number (int): current highest platform&#39;s number
+
+        Returns:
+            Platform: generated platform
+        &#39;&#39;&#39;
+        types = settings.platform_types
+        if not self.spawn_collapse_platforms:
+            types = types[:-1]
+
+        platform = Platform((randint(0, settings.map_width - 3), top_level - randint(settings.platform_height_difference[0],
+                                                                                     settings.platform_height_difference[1])), randint(
+            settings.platform_length[0], settings.platform_length[1]), choice(types), top_number + 1)
+        return platform
+
+    def manage_platforms_and_missiles(self) -&gt; None:
+        &#39;&#39;&#39;
+        Removes lowest platform and missile if it&#39;s below the screen, spawns a new one
+        &#39;&#39;&#39;
+        bottom_platform = self.platforms.sprites()[0]
+
+        if bottom_platform.rect.y &gt; settings.screen_height:
+            self.platforms.remove(bottom_platform)
+
+            top_platform = self.platforms.sprites()[len(
+                self.platforms.sprites()) - 1]
+            new_platform = self.generate_new_platform(
+                top_platform.map_coords.y, top_platform.number)
+            self.platforms.add(new_platform)
+
+        if self.missiles.sprites():
+            bottom_missile = self.missiles.sprites()[0]
+            if bottom_missile.rect.y &gt; settings.screen_height:
+                self.missiles.remove(bottom_missile)
+
+    def platform_collapse(self) -&gt; None:
+        &#39;&#39;&#39;
+        Removes collapsed platform, spawns a new one instead
+        &#39;&#39;&#39;
+        self.platforms.remove(self.collapsing_platforms[0])
+        self.collapsing_platforms.pop(0)
+
+        top_platform = self.platforms.sprites(
+        )[len(self.platforms.sprites()) - 1]
+        new_platform = self.generate_new_platform(
+            top_platform.map_coords.y, top_platform.number)
+        self.platforms.add(new_platform)
+        self.collapsing = False
+
+# ========================== MOVEMENT ===========================
+
+    def scroll_y(self) -&gt; None:
+        &#39;&#39;&#39;
+        Scrolls the screen vertically if player is above certain screen level
+        &#39;&#39;&#39;
+        player = self.player.sprite
+
+        if player.rect.y &lt; settings.scroll_border and player.direction.y &lt; 0:
+            self.world_shift = settings.scroll_speed
+            player.rect.y += settings.scroll_speed
+            for missile in self.missiles.sprites():
+                missile.rect.y += settings.scroll_speed
+
+            # world starts descending, missiles spawn, collapse platforms spawn only after first scroll
+            if self.world_descend_speed == 0:
+                self.world_descend_speed = settings.game_difficulty[0][&#39;world_descend_speed&#39;]
+                self.missile_queue()
+                self.spawn_missiles = True
+                self.spawn_collapse_platforms = True
+        else:
+            self.world_shift = 0
+
+    def platform_type_action(self, platform: Platform) -&gt; None:
+        &#39;&#39;&#39;
+        Performs a special platform action depending on type
+
+        Args:
+            platform (Platform): platform to check and perform action
+        &#39;&#39;&#39;
+        player = self.player.sprite
+
+        if platform.type == &#39;bounce&#39;:
+            player.jump_speed = settings.bounce_speed
+            player.jump()
+            player.jump_speed = settings.jump_speed
+        elif platform.type == &#39;collapse&#39; and not self.collapsing:
+            pygame.time.set_timer(self.PLATFORM_COLLAPSE,
+                                  settings.collapse_duration, 1)
+            self.collapsing_platforms.append(platform)
+            self.collapsing = True
+        elif platform.type == &#39;horizontal&#39;:
+            if platform.right:
+                player.rect.x += (settings.horizontal_platform_speed)
+            else:
+                player.rect.x -= (settings.horizontal_platform_speed)
+        elif platform.type == &#39;vertical&#39;:
+            if platform.up:
+                player.rect.y -= (settings.vertical_platform_speed)
+            else:
+                player.rect.y += (settings.vertical_platform_speed)
+
+    def vertical_movement_and_collision(self) -&gt; None:
+        &#39;&#39;&#39;
+        Applies gravity to the player, makes player land on a platform (and then performs special platform action)
+        &#39;&#39;&#39;
+        self.player.sprite.apply_gravity()
+        player = self.player.sprite
+
+        for platform in self.platforms.sprites():
+            stands = (platform.rect.top == player.rect.bottom and player.rect.right &gt;=
+                      platform.rect.left and player.rect.left &lt;= platform.rect.right)
+            if platform.rect.colliderect(player.rect) or stands:
+                if player.direction.y &gt; 0 and player.rect.bottom - player.direction.y - 1 &lt;= platform.rect.top:
+                    player.rect.bottom = platform.rect.top
+                    player.direction.y = 0
+                    if self.score &lt; platform.number:
+                        self.score = platform.number
+                    self.platform_type_action(platform)
+
+    def horizontal_movement(self) -&gt; None:
+        &#39;&#39;&#39;
+        Changes player&#39;s horizontal position
+        &#39;&#39;&#39;
+        player = self.player.sprite
+        player.rect.x += player.direction.x * player.speed
+
+# ========================= GAME DIFFICULTY =======================
+
+    def set_game_difficulty(self, parameters: Dict[str, int]) -&gt; None:
+        &#39;&#39;&#39;
+        Sets game difficulty - world descend speed and missile spawn frequency range
+
+        Args:
+            parameters (Dict[str, int]): a dictionary of certain difficulty parameters
+        &#39;&#39;&#39;
+        self.world_descend_speed = parameters[&#39;world_descend_speed&#39;]
+        self.missile_spawn_frequency_down = parameters[&#39;missile_spawn_frequency_down&#39;]
+        self.missile_spawn_frequency_up = parameters[&#39;missile_spawn_frequency_up&#39;]
+
+    def adjust_game_difficulty(self) -&gt; None:
+        &#39;&#39;&#39;
+        Adjusts game difficulty based on current score
+        &#39;&#39;&#39;
+        if self.score &gt;= settings.score_thresholds[0] and self.score &lt; settings.score_thresholds[1]:
+            self.set_game_difficulty(settings.game_difficulty[1])
+        elif self.score &gt;= settings.score_thresholds[1] and self.score &lt; settings.score_thresholds[2]:
+            self.set_game_difficulty(settings.game_difficulty[2])
+        elif self.score &gt;= settings.score_thresholds[2] and self.score &lt; settings.score_thresholds[3]:
+            self.set_game_difficulty(settings.game_difficulty[3])
+        elif self.score &gt;= settings.score_thresholds[3]:
+            self.set_game_difficulty(settings.game_difficulty[4])
+
+# ========================= GAME OVER ============================
+
+    def game_over(self) -&gt; bool:
+        &#39;&#39;&#39;
+        Tells if game is over
+
+        Returns:
+            bool: True if game is over, False otherwise
+        &#39;&#39;&#39;
+        player = self.player.sprite
+
+        hit_by_missile = False
+        for missile in self.missiles.sprites():
+            if missile.rect.colliderect(player.rect):
+                hit_by_missile = True
+                break
+
+        game_over_position = (player.rect.right &lt; 0 or player.rect.left &gt;
+                              settings.screen_width or player.rect.bottom &gt;= settings.screen_height or hit_by_missile)
+        if game_over_position:
+            player.rect.x, player.rect.y = settings.start_pos[0], settings.start_pos[1]
+            return True
+        return False
+
+# ======================= GAME LOOP =============================
+
+    def resume_collapse(self) -&gt; None:
+        &#39;&#39;&#39;
+        Resumes PLATFORM_COLLAPSE event after end of pause (if event was toggled during pause)
+        &#39;&#39;&#39;
+        remaining_collapse_time = self.collapse_time - self.pause_time
+        pygame.time.set_timer(self.PLATFORM_COLLAPSE,
+                              remaining_collapse_time, 1)
+        self.collapse_time = -1
+
+    def resume_missiles(self) -&gt; None:
+        &#39;&#39;&#39;
+        Resumes SPAWN_MISSILE event after end of pause (if event was toggled during pause)
+        &#39;&#39;&#39;
+        remaining_missile_time = self.missile_time - self.pause_time
+        pygame.time.set_timer(self.SPAWN_MISSILE, remaining_missile_time, 1)
+        self.missile_time = -1
+
+    def event_queue(self) -&gt; None:
+        &#39;&#39;&#39;
+        Main event queue. Handles game quitting, custom events and different game states
+        &#39;&#39;&#39;
+        for event in pygame.event.get():
+            # quit game
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if self.state == &#39;active&#39; or self.state == &#39;pause&#39;:
+                # game events
+                if event.type == self.PLATFORM_COLLAPSE:
+                    if self.state == &#39;active&#39;:
+                        self.platform_collapse()
+                    else:
+                        self.collapse_time = pygame.time.get_ticks()
+                if event.type == self.SPAWN_MISSILE:
+                    if self.spawn_collapse_platforms:
+                        if self.state == &#39;active&#39;:
+                            self.spawn_missile()
+                            self.missile_queue()
+                        else:
+                            self.missile_time = pygame.time.get_ticks()
+            if self.state == &#39;active&#39;:
+                if event.type == pygame.KEYDOWN:
+                    # pause
+                    if event.key == pygame.K_ESCAPE:
+                        self.display.pause()
+                        self.state = &#39;pause&#39;
+                        self.pause_time = pygame.time.get_ticks()
+            else:
+                if event.type == pygame.KEYDOWN:
+                    # handle different game states
+                    if self.state == &#39;start&#39; and event.key == pygame.K_RETURN:  # ENTER
+                        self.new_game()
+                        self.state = &#39;active&#39;
+                    elif self.state == &#39;pause&#39; and event.key == pygame.K_ESCAPE:  # ESC
+                        self.state = &#39;active&#39;
+                        if self.collapse_time != -1:
+                            self.resume_collapse()
+                        if self.missile_time != -1:
+                            self.resume_missiles()
+                    elif self.state == &#39;game_over&#39; and event.key == pygame.K_RETURN:  # ENTER
+                        if scoreboard.is_good_enough_score(self.score):
+                            self.display.input(&#34;&#34;)
+                            self.state = &#39;input&#39;
+                        else:
+                            self.display.scoreboard()
+                            self.state = &#39;start&#39;
+                    elif self.state == &#39;input&#39;:  # get nick from user
+                        if event.key == pygame.K_RETURN:
+                            if self.nick:
+                                scoreboard.add_score(self.score, self.nick)
+                                self.display.scoreboard()
+                                self.state = &#39;start&#39;
+                        elif event.key == pygame.K_BACKSPACE:
+                            if self.nick:
+                                self.nick = self.nick[:-1]
+                                self.display.input(self.nick)
+                        elif len(self.nick) &lt;= 10:
+                            self.nick += event.unicode
+                            self.display.input(self.nick)
+
+    def run(self) -&gt; None:
+        &#39;&#39;&#39;
+        Updates and displays one frame of the game
+        &#39;&#39;&#39;
+        # event queue
+        self.event_queue()
+
+        if self.state == &#39;active&#39;:
+            # ====== STATE ======
+            # player
+            self.horizontal_movement()
+            self.vertical_movement_and_collision()
+            self.player.update(self.world_descend_speed)
+
+            # platforms and missiles
+            self.manage_platforms_and_missiles()
+            self.platforms.update(self.world_shift + self.world_descend_speed)
+            self.missiles.update(self.world_descend_speed)
+
+            # scroll screen
+            self.scroll_y()
+
+            # adjust game difficulty based on current score
+            self.adjust_game_difficulty()
+
+            # ====== DISPLAY ======
+            self.display.game(self.platforms, self.player,
+                              self.missiles, self.score)
+
+            # game over
+            if self.game_over():
+                self.display.game_over()
+                self.state = &#39;game_over&#39;
+
+        elif self.state == &#39;init&#39;:
+            self.display.menu()
+            self.state = &#39;start&#39;</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="game.Game"><code class="flex name class">
+<span>class <span class="ident">Game</span></span>
+<span>(</span><span>surface: pygame.Surface, logo: pygame.Surface, fonts: Dict[str, pygame.font.Font])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A game object manages game mechanics and states</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>surface</code></strong> :&ensp;<code>pygame.Surface</code></dt>
+<dd>game screen</dd>
+<dt><strong><code>logo</code></strong> :&ensp;<code>pygame.Surface</code></dt>
+<dd>game logo</dd>
+<dt><strong><code>fonts</code></strong> :&ensp;<code>Dict[str, pygame.font.Font]</code></dt>
+<dd>dictionary of fonts</dd>
+</dl>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>display</code></strong> :&ensp;<code>Display</code></dt>
+<dd>a display object to which Game delegates drawing things to the screen</dd>
+<dt><strong><code>state</code></strong> :&ensp;<code>str</code></dt>
+<dd>game state - init | menu | start | pause | game_over | scoreboard | input</dd>
+<dt><strong><code>nick</code></strong> :&ensp;<code>str</code></dt>
+<dd>current player's nick</dd>
+<dt><strong><code>score</code></strong> :&ensp;<code>int</code></dt>
+<dd>current score</dd>
+<dt><strong><code>platforms</code></strong> :&ensp;<code>pygame.sprite.Group</code></dt>
+<dd>group of current platforms in the game</dd>
+<dt><strong><code>player</code></strong> :&ensp;<code>pygame.sprite.GroupSingle</code></dt>
+<dd>single group containing the player</dd>
+<dt><strong><code>missiles</code></strong> :&ensp;<code>pygame.sprite.Group</code></dt>
+<dd>group of current missiles in the game</dd>
+<dt><strong><code>PLATFORM_COLLAPSE</code></strong> :&ensp;<code>int</code></dt>
+<dd>custom event of a collapsing platform</dd>
+<dt><strong><code>SPAWN_MISSILE</code></strong> :&ensp;<code>int</code></dt>
+<dd>custom event of spawning a missile</dd>
+<dt><strong><code>collapsing</code></strong> :&ensp;<code>bool</code></dt>
+<dd>tells if there is a platform collapsing</dd>
+<dt><strong><code>collapsing_platforms</code></strong> :&ensp;<code>list[Platform]</code></dt>
+<dd>current collapsing platforms</dd>
+<dt><strong><code>world_shift</code></strong> :&ensp;<code>int</code></dt>
+<dd>world shift (positive when jumping high)</dd>
+<dt><strong><code>spawn_missiles</code></strong> :&ensp;<code>bool</code></dt>
+<dd>tells if missiles should be spawned</dd>
+<dt><strong><code>spawn_collapse_platforms</code></strong> :&ensp;<code>bool</code></dt>
+<dd>tells if collapse platforms should be spawned</dd>
+<dt><strong><code>missile_spawn_frequency_down</code></strong> :&ensp;<code>int</code></dt>
+<dd>current minimal missile spawn frequency</dd>
+<dt><strong><code>missile_spawn_frequency_up</code></strong> :&ensp;<code>int</code></dt>
+<dd>current maximal missile spawn frequency</dd>
+<dt><strong><code>pause_time</code></strong> :&ensp;<code>int</code></dt>
+<dd>clock ticks in the moment of pausing</dd>
+<dt><strong><code>missile_time</code></strong> :&ensp;<code>int</code></dt>
+<dd>clock ticks in the moment of SPAWN_MISSILE event toggle during pause</dd>
+<dt><strong><code>collapse_time</code></strong> :&ensp;<code>int</code></dt>
+<dd>clock ticks in the moment of PLATFORM_COLLAPSE event toggle during pause</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Game:
+    &#39;&#39;&#39;
+    A game object manages game mechanics and states
+
+    Args:
+        surface (pygame.Surface): game screen
+        logo (pygame.Surface): game logo
+        fonts (Dict[str, pygame.font.Font]): dictionary of fonts
+
+    Attributes:
+        display (Display): a display object to which Game delegates drawing things to the screen
+        state (str): game state - init | menu | start | pause | game_over | scoreboard | input
+        nick (str): current player&#39;s nick
+        score (int): current score
+        platforms (pygame.sprite.Group): group of current platforms in the game
+        player (pygame.sprite.GroupSingle): single group containing the player
+        missiles (pygame.sprite.Group): group of current missiles in the game
+        PLATFORM_COLLAPSE (int): custom event of a collapsing platform
+        SPAWN_MISSILE (int): custom event of spawning a missile
+        collapsing (bool): tells if there is a platform collapsing
+        collapsing_platforms (list[Platform]): current collapsing platforms
+        world_shift (int): world shift (positive when jumping high)
+        spawn_missiles (bool): tells if missiles should be spawned
+        spawn_collapse_platforms (bool): tells if collapse platforms should be spawned
+        missile_spawn_frequency_down (int): current minimal missile spawn frequency
+        missile_spawn_frequency_up (int): current maximal missile spawn frequency
+        pause_time (int): clock ticks in the moment of pausing
+        missile_time (int): clock ticks in the moment of SPAWN_MISSILE event toggle during pause
+        collapse_time (int): clock ticks in the moment of PLATFORM_COLLAPSE event toggle during pause
+    &#39;&#39;&#39;
+
+    def __init__(self, surface: pygame.Surface, logo: pygame.Surface, fonts: Dict[str, pygame.font.Font]) -&gt; None:
+
+        # Custom events setup
+        self.PLATFORM_COLLAPSE = pygame.USEREVENT + 1
+        self.SPAWN_MISSILE = pygame.USEREVENT + 2
+
+        # game setup
+        self.display = Display(surface, logo, fonts)
+        self.state = &#39;init&#39;
+
+# ============================ NEW GAME ===============================
+
+    def new_game(self) -&gt; None:
+        &#39;&#39;&#39;
+        Resets game settings, spawns first platforms and player on the bottom platform
+        &#39;&#39;&#39;
+        # reset
+        pygame.event.clear()
+        self.state = &#39;active&#39;
+        self.nick = &#34;&#34;
+        self.score = 0
+        self.collapsing = False
+        self.collapsing_platforms = []
+        self.world_shift = 0
+        self.spawn_missiles = False
+        self.missile_time = -1
+        self.spawn_collapse_platforms = False
+        self.collapse_time = -1
+
+        # start game difficulty
+        self.set_game_difficulty(settings.game_difficulty[0])
+        self.world_descend_speed = 0
+
+        # groups of objects
+        self.platforms = pygame.sprite.Group()
+        self.player = pygame.sprite.GroupSingle()
+        self.missiles = pygame.sprite.Group()
+
+        # first 9 platforms
+        start_platform = Platform(
+            (0, settings.map_height-1), settings.map_width, &#39;normal&#39;, 0)
+        self.platforms.add(start_platform)
+        top_level, top_number = start_platform.map_coords.y, 0
+        for i in range(9):
+            new_platform = self.generate_new_platform(top_level, top_number)
+            top_level, top_number = new_platform.map_coords.y, new_platform.number
+            self.platforms.add(new_platform)
+
+        # player
+        player_sprite = Player(settings.start_pos)
+        self.player.add(player_sprite)
+
+# ================== MISSILE AND PLATFORM SPAWN ===================
+
+    def missile_queue(self) -&gt; None:
+        &#39;&#39;&#39;
+        Sets timer for a single missile spawn
+        &#39;&#39;&#39;
+        pygame.time.set_timer(self.SPAWN_MISSILE, randint(
+            self.missile_spawn_frequency_down, self.missile_spawn_frequency_up), 1)
+
+    def spawn_missile(self) -&gt; None:
+        &#39;&#39;&#39;
+        Spawns a missile on random x position, 100 pixels above screen
+        &#39;&#39;&#39;
+        missile = Missile(
+            (randint(0, settings.screen_width - settings.missile_dimensions[0]), -100))
+        self.missiles.add(missile)
+
+    def generate_new_platform(self, top_level: int, top_number: int) -&gt; Platform:
+        &#39;&#39;&#39;
+        Generates a random single platform
+
+        Args:
+            top_level (int): tile level of the current highest platform
+            top_number (int): current highest platform&#39;s number
+
+        Returns:
+            Platform: generated platform
+        &#39;&#39;&#39;
+        types = settings.platform_types
+        if not self.spawn_collapse_platforms:
+            types = types[:-1]
+
+        platform = Platform((randint(0, settings.map_width - 3), top_level - randint(settings.platform_height_difference[0],
+                                                                                     settings.platform_height_difference[1])), randint(
+            settings.platform_length[0], settings.platform_length[1]), choice(types), top_number + 1)
+        return platform
+
+    def manage_platforms_and_missiles(self) -&gt; None:
+        &#39;&#39;&#39;
+        Removes lowest platform and missile if it&#39;s below the screen, spawns a new one
+        &#39;&#39;&#39;
+        bottom_platform = self.platforms.sprites()[0]
+
+        if bottom_platform.rect.y &gt; settings.screen_height:
+            self.platforms.remove(bottom_platform)
+
+            top_platform = self.platforms.sprites()[len(
+                self.platforms.sprites()) - 1]
+            new_platform = self.generate_new_platform(
+                top_platform.map_coords.y, top_platform.number)
+            self.platforms.add(new_platform)
+
+        if self.missiles.sprites():
+            bottom_missile = self.missiles.sprites()[0]
+            if bottom_missile.rect.y &gt; settings.screen_height:
+                self.missiles.remove(bottom_missile)
+
+    def platform_collapse(self) -&gt; None:
+        &#39;&#39;&#39;
+        Removes collapsed platform, spawns a new one instead
+        &#39;&#39;&#39;
+        self.platforms.remove(self.collapsing_platforms[0])
+        self.collapsing_platforms.pop(0)
+
+        top_platform = self.platforms.sprites(
+        )[len(self.platforms.sprites()) - 1]
+        new_platform = self.generate_new_platform(
+            top_platform.map_coords.y, top_platform.number)
+        self.platforms.add(new_platform)
+        self.collapsing = False
+
+# ========================== MOVEMENT ===========================
+
+    def scroll_y(self) -&gt; None:
+        &#39;&#39;&#39;
+        Scrolls the screen vertically if player is above certain screen level
+        &#39;&#39;&#39;
+        player = self.player.sprite
+
+        if player.rect.y &lt; settings.scroll_border and player.direction.y &lt; 0:
+            self.world_shift = settings.scroll_speed
+            player.rect.y += settings.scroll_speed
+            for missile in self.missiles.sprites():
+                missile.rect.y += settings.scroll_speed
+
+            # world starts descending, missiles spawn, collapse platforms spawn only after first scroll
+            if self.world_descend_speed == 0:
+                self.world_descend_speed = settings.game_difficulty[0][&#39;world_descend_speed&#39;]
+                self.missile_queue()
+                self.spawn_missiles = True
+                self.spawn_collapse_platforms = True
+        else:
+            self.world_shift = 0
+
+    def platform_type_action(self, platform: Platform) -&gt; None:
+        &#39;&#39;&#39;
+        Performs a special platform action depending on type
+
+        Args:
+            platform (Platform): platform to check and perform action
+        &#39;&#39;&#39;
+        player = self.player.sprite
+
+        if platform.type == &#39;bounce&#39;:
+            player.jump_speed = settings.bounce_speed
+            player.jump()
+            player.jump_speed = settings.jump_speed
+        elif platform.type == &#39;collapse&#39; and not self.collapsing:
+            pygame.time.set_timer(self.PLATFORM_COLLAPSE,
+                                  settings.collapse_duration, 1)
+            self.collapsing_platforms.append(platform)
+            self.collapsing = True
+        elif platform.type == &#39;horizontal&#39;:
+            if platform.right:
+                player.rect.x += (settings.horizontal_platform_speed)
+            else:
+                player.rect.x -= (settings.horizontal_platform_speed)
+        elif platform.type == &#39;vertical&#39;:
+            if platform.up:
+                player.rect.y -= (settings.vertical_platform_speed)
+            else:
+                player.rect.y += (settings.vertical_platform_speed)
+
+    def vertical_movement_and_collision(self) -&gt; None:
+        &#39;&#39;&#39;
+        Applies gravity to the player, makes player land on a platform (and then performs special platform action)
+        &#39;&#39;&#39;
+        self.player.sprite.apply_gravity()
+        player = self.player.sprite
+
+        for platform in self.platforms.sprites():
+            stands = (platform.rect.top == player.rect.bottom and player.rect.right &gt;=
+                      platform.rect.left and player.rect.left &lt;= platform.rect.right)
+            if platform.rect.colliderect(player.rect) or stands:
+                if player.direction.y &gt; 0 and player.rect.bottom - player.direction.y - 1 &lt;= platform.rect.top:
+                    player.rect.bottom = platform.rect.top
+                    player.direction.y = 0
+                    if self.score &lt; platform.number:
+                        self.score = platform.number
+                    self.platform_type_action(platform)
+
+    def horizontal_movement(self) -&gt; None:
+        &#39;&#39;&#39;
+        Changes player&#39;s horizontal position
+        &#39;&#39;&#39;
+        player = self.player.sprite
+        player.rect.x += player.direction.x * player.speed
+
+# ========================= GAME DIFFICULTY =======================
+
+    def set_game_difficulty(self, parameters: Dict[str, int]) -&gt; None:
+        &#39;&#39;&#39;
+        Sets game difficulty - world descend speed and missile spawn frequency range
+
+        Args:
+            parameters (Dict[str, int]): a dictionary of certain difficulty parameters
+        &#39;&#39;&#39;
+        self.world_descend_speed = parameters[&#39;world_descend_speed&#39;]
+        self.missile_spawn_frequency_down = parameters[&#39;missile_spawn_frequency_down&#39;]
+        self.missile_spawn_frequency_up = parameters[&#39;missile_spawn_frequency_up&#39;]
+
+    def adjust_game_difficulty(self) -&gt; None:
+        &#39;&#39;&#39;
+        Adjusts game difficulty based on current score
+        &#39;&#39;&#39;
+        if self.score &gt;= settings.score_thresholds[0] and self.score &lt; settings.score_thresholds[1]:
+            self.set_game_difficulty(settings.game_difficulty[1])
+        elif self.score &gt;= settings.score_thresholds[1] and self.score &lt; settings.score_thresholds[2]:
+            self.set_game_difficulty(settings.game_difficulty[2])
+        elif self.score &gt;= settings.score_thresholds[2] and self.score &lt; settings.score_thresholds[3]:
+            self.set_game_difficulty(settings.game_difficulty[3])
+        elif self.score &gt;= settings.score_thresholds[3]:
+            self.set_game_difficulty(settings.game_difficulty[4])
+
+# ========================= GAME OVER ============================
+
+    def game_over(self) -&gt; bool:
+        &#39;&#39;&#39;
+        Tells if game is over
+
+        Returns:
+            bool: True if game is over, False otherwise
+        &#39;&#39;&#39;
+        player = self.player.sprite
+
+        hit_by_missile = False
+        for missile in self.missiles.sprites():
+            if missile.rect.colliderect(player.rect):
+                hit_by_missile = True
+                break
+
+        game_over_position = (player.rect.right &lt; 0 or player.rect.left &gt;
+                              settings.screen_width or player.rect.bottom &gt;= settings.screen_height or hit_by_missile)
+        if game_over_position:
+            player.rect.x, player.rect.y = settings.start_pos[0], settings.start_pos[1]
+            return True
+        return False
+
+# ======================= GAME LOOP =============================
+
+    def resume_collapse(self) -&gt; None:
+        &#39;&#39;&#39;
+        Resumes PLATFORM_COLLAPSE event after end of pause (if event was toggled during pause)
+        &#39;&#39;&#39;
+        remaining_collapse_time = self.collapse_time - self.pause_time
+        pygame.time.set_timer(self.PLATFORM_COLLAPSE,
+                              remaining_collapse_time, 1)
+        self.collapse_time = -1
+
+    def resume_missiles(self) -&gt; None:
+        &#39;&#39;&#39;
+        Resumes SPAWN_MISSILE event after end of pause (if event was toggled during pause)
+        &#39;&#39;&#39;
+        remaining_missile_time = self.missile_time - self.pause_time
+        pygame.time.set_timer(self.SPAWN_MISSILE, remaining_missile_time, 1)
+        self.missile_time = -1
+
+    def event_queue(self) -&gt; None:
+        &#39;&#39;&#39;
+        Main event queue. Handles game quitting, custom events and different game states
+        &#39;&#39;&#39;
+        for event in pygame.event.get():
+            # quit game
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if self.state == &#39;active&#39; or self.state == &#39;pause&#39;:
+                # game events
+                if event.type == self.PLATFORM_COLLAPSE:
+                    if self.state == &#39;active&#39;:
+                        self.platform_collapse()
+                    else:
+                        self.collapse_time = pygame.time.get_ticks()
+                if event.type == self.SPAWN_MISSILE:
+                    if self.spawn_collapse_platforms:
+                        if self.state == &#39;active&#39;:
+                            self.spawn_missile()
+                            self.missile_queue()
+                        else:
+                            self.missile_time = pygame.time.get_ticks()
+            if self.state == &#39;active&#39;:
+                if event.type == pygame.KEYDOWN:
+                    # pause
+                    if event.key == pygame.K_ESCAPE:
+                        self.display.pause()
+                        self.state = &#39;pause&#39;
+                        self.pause_time = pygame.time.get_ticks()
+            else:
+                if event.type == pygame.KEYDOWN:
+                    # handle different game states
+                    if self.state == &#39;start&#39; and event.key == pygame.K_RETURN:  # ENTER
+                        self.new_game()
+                        self.state = &#39;active&#39;
+                    elif self.state == &#39;pause&#39; and event.key == pygame.K_ESCAPE:  # ESC
+                        self.state = &#39;active&#39;
+                        if self.collapse_time != -1:
+                            self.resume_collapse()
+                        if self.missile_time != -1:
+                            self.resume_missiles()
+                    elif self.state == &#39;game_over&#39; and event.key == pygame.K_RETURN:  # ENTER
+                        if scoreboard.is_good_enough_score(self.score):
+                            self.display.input(&#34;&#34;)
+                            self.state = &#39;input&#39;
+                        else:
+                            self.display.scoreboard()
+                            self.state = &#39;start&#39;
+                    elif self.state == &#39;input&#39;:  # get nick from user
+                        if event.key == pygame.K_RETURN:
+                            if self.nick:
+                                scoreboard.add_score(self.score, self.nick)
+                                self.display.scoreboard()
+                                self.state = &#39;start&#39;
+                        elif event.key == pygame.K_BACKSPACE:
+                            if self.nick:
+                                self.nick = self.nick[:-1]
+                                self.display.input(self.nick)
+                        elif len(self.nick) &lt;= 10:
+                            self.nick += event.unicode
+                            self.display.input(self.nick)
+
+    def run(self) -&gt; None:
+        &#39;&#39;&#39;
+        Updates and displays one frame of the game
+        &#39;&#39;&#39;
+        # event queue
+        self.event_queue()
+
+        if self.state == &#39;active&#39;:
+            # ====== STATE ======
+            # player
+            self.horizontal_movement()
+            self.vertical_movement_and_collision()
+            self.player.update(self.world_descend_speed)
+
+            # platforms and missiles
+            self.manage_platforms_and_missiles()
+            self.platforms.update(self.world_shift + self.world_descend_speed)
+            self.missiles.update(self.world_descend_speed)
+
+            # scroll screen
+            self.scroll_y()
+
+            # adjust game difficulty based on current score
+            self.adjust_game_difficulty()
+
+            # ====== DISPLAY ======
+            self.display.game(self.platforms, self.player,
+                              self.missiles, self.score)
+
+            # game over
+            if self.game_over():
+                self.display.game_over()
+                self.state = &#39;game_over&#39;
+
+        elif self.state == &#39;init&#39;:
+            self.display.menu()
+            self.state = &#39;start&#39;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="game.Game.adjust_game_difficulty"><code class="name flex">
+<span>def <span class="ident">adjust_game_difficulty</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adjusts game difficulty based on current score</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def adjust_game_difficulty(self) -&gt; None:
+    &#39;&#39;&#39;
+    Adjusts game difficulty based on current score
+    &#39;&#39;&#39;
+    if self.score &gt;= settings.score_thresholds[0] and self.score &lt; settings.score_thresholds[1]:
+        self.set_game_difficulty(settings.game_difficulty[1])
+    elif self.score &gt;= settings.score_thresholds[1] and self.score &lt; settings.score_thresholds[2]:
+        self.set_game_difficulty(settings.game_difficulty[2])
+    elif self.score &gt;= settings.score_thresholds[2] and self.score &lt; settings.score_thresholds[3]:
+        self.set_game_difficulty(settings.game_difficulty[3])
+    elif self.score &gt;= settings.score_thresholds[3]:
+        self.set_game_difficulty(settings.game_difficulty[4])</code></pre>
+</details>
+</dd>
+<dt id="game.Game.event_queue"><code class="name flex">
+<span>def <span class="ident">event_queue</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Main event queue. Handles game quitting, custom events and different game states</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def event_queue(self) -&gt; None:
+    &#39;&#39;&#39;
+    Main event queue. Handles game quitting, custom events and different game states
+    &#39;&#39;&#39;
+    for event in pygame.event.get():
+        # quit game
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if self.state == &#39;active&#39; or self.state == &#39;pause&#39;:
+            # game events
+            if event.type == self.PLATFORM_COLLAPSE:
+                if self.state == &#39;active&#39;:
+                    self.platform_collapse()
+                else:
+                    self.collapse_time = pygame.time.get_ticks()
+            if event.type == self.SPAWN_MISSILE:
+                if self.spawn_collapse_platforms:
+                    if self.state == &#39;active&#39;:
+                        self.spawn_missile()
+                        self.missile_queue()
+                    else:
+                        self.missile_time = pygame.time.get_ticks()
+        if self.state == &#39;active&#39;:
+            if event.type == pygame.KEYDOWN:
+                # pause
+                if event.key == pygame.K_ESCAPE:
+                    self.display.pause()
+                    self.state = &#39;pause&#39;
+                    self.pause_time = pygame.time.get_ticks()
+        else:
+            if event.type == pygame.KEYDOWN:
+                # handle different game states
+                if self.state == &#39;start&#39; and event.key == pygame.K_RETURN:  # ENTER
+                    self.new_game()
+                    self.state = &#39;active&#39;
+                elif self.state == &#39;pause&#39; and event.key == pygame.K_ESCAPE:  # ESC
+                    self.state = &#39;active&#39;
+                    if self.collapse_time != -1:
+                        self.resume_collapse()
+                    if self.missile_time != -1:
+                        self.resume_missiles()
+                elif self.state == &#39;game_over&#39; and event.key == pygame.K_RETURN:  # ENTER
+                    if scoreboard.is_good_enough_score(self.score):
+                        self.display.input(&#34;&#34;)
+                        self.state = &#39;input&#39;
+                    else:
+                        self.display.scoreboard()
+                        self.state = &#39;start&#39;
+                elif self.state == &#39;input&#39;:  # get nick from user
+                    if event.key == pygame.K_RETURN:
+                        if self.nick:
+                            scoreboard.add_score(self.score, self.nick)
+                            self.display.scoreboard()
+                            self.state = &#39;start&#39;
+                    elif event.key == pygame.K_BACKSPACE:
+                        if self.nick:
+                            self.nick = self.nick[:-1]
+                            self.display.input(self.nick)
+                    elif len(self.nick) &lt;= 10:
+                        self.nick += event.unicode
+                        self.display.input(self.nick)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.game_over"><code class="name flex">
+<span>def <span class="ident">game_over</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tells if game is over</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if game is over, False otherwise</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def game_over(self) -&gt; bool:
+    &#39;&#39;&#39;
+    Tells if game is over
+
+    Returns:
+        bool: True if game is over, False otherwise
+    &#39;&#39;&#39;
+    player = self.player.sprite
+
+    hit_by_missile = False
+    for missile in self.missiles.sprites():
+        if missile.rect.colliderect(player.rect):
+            hit_by_missile = True
+            break
+
+    game_over_position = (player.rect.right &lt; 0 or player.rect.left &gt;
+                          settings.screen_width or player.rect.bottom &gt;= settings.screen_height or hit_by_missile)
+    if game_over_position:
+        player.rect.x, player.rect.y = settings.start_pos[0], settings.start_pos[1]
+        return True
+    return False</code></pre>
+</details>
+</dd>
+<dt id="game.Game.generate_new_platform"><code class="name flex">
+<span>def <span class="ident">generate_new_platform</span></span>(<span>self, top_level: int, top_number: int) ‑> <a title="platforms.Platform" href="platforms.html#platforms.Platform">Platform</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates a random single platform</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>top_level</code></strong> :&ensp;<code>int</code></dt>
+<dd>tile level of the current highest platform</dd>
+<dt><strong><code>top_number</code></strong> :&ensp;<code>int</code></dt>
+<dd>current highest platform's number</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Platform</code></dt>
+<dd>generated platform</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_new_platform(self, top_level: int, top_number: int) -&gt; Platform:
+    &#39;&#39;&#39;
+    Generates a random single platform
+
+    Args:
+        top_level (int): tile level of the current highest platform
+        top_number (int): current highest platform&#39;s number
+
+    Returns:
+        Platform: generated platform
+    &#39;&#39;&#39;
+    types = settings.platform_types
+    if not self.spawn_collapse_platforms:
+        types = types[:-1]
+
+    platform = Platform((randint(0, settings.map_width - 3), top_level - randint(settings.platform_height_difference[0],
+                                                                                 settings.platform_height_difference[1])), randint(
+        settings.platform_length[0], settings.platform_length[1]), choice(types), top_number + 1)
+    return platform</code></pre>
+</details>
+</dd>
+<dt id="game.Game.horizontal_movement"><code class="name flex">
+<span>def <span class="ident">horizontal_movement</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Changes player's horizontal position</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def horizontal_movement(self) -&gt; None:
+    &#39;&#39;&#39;
+    Changes player&#39;s horizontal position
+    &#39;&#39;&#39;
+    player = self.player.sprite
+    player.rect.x += player.direction.x * player.speed</code></pre>
+</details>
+</dd>
+<dt id="game.Game.manage_platforms_and_missiles"><code class="name flex">
+<span>def <span class="ident">manage_platforms_and_missiles</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Removes lowest platform and missile if it's below the screen, spawns a new one</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def manage_platforms_and_missiles(self) -&gt; None:
+    &#39;&#39;&#39;
+    Removes lowest platform and missile if it&#39;s below the screen, spawns a new one
+    &#39;&#39;&#39;
+    bottom_platform = self.platforms.sprites()[0]
+
+    if bottom_platform.rect.y &gt; settings.screen_height:
+        self.platforms.remove(bottom_platform)
+
+        top_platform = self.platforms.sprites()[len(
+            self.platforms.sprites()) - 1]
+        new_platform = self.generate_new_platform(
+            top_platform.map_coords.y, top_platform.number)
+        self.platforms.add(new_platform)
+
+    if self.missiles.sprites():
+        bottom_missile = self.missiles.sprites()[0]
+        if bottom_missile.rect.y &gt; settings.screen_height:
+            self.missiles.remove(bottom_missile)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.missile_queue"><code class="name flex">
+<span>def <span class="ident">missile_queue</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets timer for a single missile spawn</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def missile_queue(self) -&gt; None:
+    &#39;&#39;&#39;
+    Sets timer for a single missile spawn
+    &#39;&#39;&#39;
+    pygame.time.set_timer(self.SPAWN_MISSILE, randint(
+        self.missile_spawn_frequency_down, self.missile_spawn_frequency_up), 1)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.new_game"><code class="name flex">
+<span>def <span class="ident">new_game</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resets game settings, spawns first platforms and player on the bottom platform</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def new_game(self) -&gt; None:
+    &#39;&#39;&#39;
+    Resets game settings, spawns first platforms and player on the bottom platform
+    &#39;&#39;&#39;
+    # reset
+    pygame.event.clear()
+    self.state = &#39;active&#39;
+    self.nick = &#34;&#34;
+    self.score = 0
+    self.collapsing = False
+    self.collapsing_platforms = []
+    self.world_shift = 0
+    self.spawn_missiles = False
+    self.missile_time = -1
+    self.spawn_collapse_platforms = False
+    self.collapse_time = -1
+
+    # start game difficulty
+    self.set_game_difficulty(settings.game_difficulty[0])
+    self.world_descend_speed = 0
+
+    # groups of objects
+    self.platforms = pygame.sprite.Group()
+    self.player = pygame.sprite.GroupSingle()
+    self.missiles = pygame.sprite.Group()
+
+    # first 9 platforms
+    start_platform = Platform(
+        (0, settings.map_height-1), settings.map_width, &#39;normal&#39;, 0)
+    self.platforms.add(start_platform)
+    top_level, top_number = start_platform.map_coords.y, 0
+    for i in range(9):
+        new_platform = self.generate_new_platform(top_level, top_number)
+        top_level, top_number = new_platform.map_coords.y, new_platform.number
+        self.platforms.add(new_platform)
+
+    # player
+    player_sprite = Player(settings.start_pos)
+    self.player.add(player_sprite)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.platform_collapse"><code class="name flex">
+<span>def <span class="ident">platform_collapse</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Removes collapsed platform, spawns a new one instead</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def platform_collapse(self) -&gt; None:
+    &#39;&#39;&#39;
+    Removes collapsed platform, spawns a new one instead
+    &#39;&#39;&#39;
+    self.platforms.remove(self.collapsing_platforms[0])
+    self.collapsing_platforms.pop(0)
+
+    top_platform = self.platforms.sprites(
+    )[len(self.platforms.sprites()) - 1]
+    new_platform = self.generate_new_platform(
+        top_platform.map_coords.y, top_platform.number)
+    self.platforms.add(new_platform)
+    self.collapsing = False</code></pre>
+</details>
+</dd>
+<dt id="game.Game.platform_type_action"><code class="name flex">
+<span>def <span class="ident">platform_type_action</span></span>(<span>self, platform: <a title="platforms.Platform" href="platforms.html#platforms.Platform">Platform</a>) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Performs a special platform action depending on type</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>platform</code></strong> :&ensp;<code>Platform</code></dt>
+<dd>platform to check and perform action</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def platform_type_action(self, platform: Platform) -&gt; None:
+    &#39;&#39;&#39;
+    Performs a special platform action depending on type
+
+    Args:
+        platform (Platform): platform to check and perform action
+    &#39;&#39;&#39;
+    player = self.player.sprite
+
+    if platform.type == &#39;bounce&#39;:
+        player.jump_speed = settings.bounce_speed
+        player.jump()
+        player.jump_speed = settings.jump_speed
+    elif platform.type == &#39;collapse&#39; and not self.collapsing:
+        pygame.time.set_timer(self.PLATFORM_COLLAPSE,
+                              settings.collapse_duration, 1)
+        self.collapsing_platforms.append(platform)
+        self.collapsing = True
+    elif platform.type == &#39;horizontal&#39;:
+        if platform.right:
+            player.rect.x += (settings.horizontal_platform_speed)
+        else:
+            player.rect.x -= (settings.horizontal_platform_speed)
+    elif platform.type == &#39;vertical&#39;:
+        if platform.up:
+            player.rect.y -= (settings.vertical_platform_speed)
+        else:
+            player.rect.y += (settings.vertical_platform_speed)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.resume_collapse"><code class="name flex">
+<span>def <span class="ident">resume_collapse</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resumes PLATFORM_COLLAPSE event after end of pause (if event was toggled during pause)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def resume_collapse(self) -&gt; None:
+    &#39;&#39;&#39;
+    Resumes PLATFORM_COLLAPSE event after end of pause (if event was toggled during pause)
+    &#39;&#39;&#39;
+    remaining_collapse_time = self.collapse_time - self.pause_time
+    pygame.time.set_timer(self.PLATFORM_COLLAPSE,
+                          remaining_collapse_time, 1)
+    self.collapse_time = -1</code></pre>
+</details>
+</dd>
+<dt id="game.Game.resume_missiles"><code class="name flex">
+<span>def <span class="ident">resume_missiles</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resumes SPAWN_MISSILE event after end of pause (if event was toggled during pause)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def resume_missiles(self) -&gt; None:
+    &#39;&#39;&#39;
+    Resumes SPAWN_MISSILE event after end of pause (if event was toggled during pause)
+    &#39;&#39;&#39;
+    remaining_missile_time = self.missile_time - self.pause_time
+    pygame.time.set_timer(self.SPAWN_MISSILE, remaining_missile_time, 1)
+    self.missile_time = -1</code></pre>
+</details>
+</dd>
+<dt id="game.Game.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates and displays one frame of the game</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self) -&gt; None:
+    &#39;&#39;&#39;
+    Updates and displays one frame of the game
+    &#39;&#39;&#39;
+    # event queue
+    self.event_queue()
+
+    if self.state == &#39;active&#39;:
+        # ====== STATE ======
+        # player
+        self.horizontal_movement()
+        self.vertical_movement_and_collision()
+        self.player.update(self.world_descend_speed)
+
+        # platforms and missiles
+        self.manage_platforms_and_missiles()
+        self.platforms.update(self.world_shift + self.world_descend_speed)
+        self.missiles.update(self.world_descend_speed)
+
+        # scroll screen
+        self.scroll_y()
+
+        # adjust game difficulty based on current score
+        self.adjust_game_difficulty()
+
+        # ====== DISPLAY ======
+        self.display.game(self.platforms, self.player,
+                          self.missiles, self.score)
+
+        # game over
+        if self.game_over():
+            self.display.game_over()
+            self.state = &#39;game_over&#39;
+
+    elif self.state == &#39;init&#39;:
+        self.display.menu()
+        self.state = &#39;start&#39;</code></pre>
+</details>
+</dd>
+<dt id="game.Game.scroll_y"><code class="name flex">
+<span>def <span class="ident">scroll_y</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Scrolls the screen vertically if player is above certain screen level</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def scroll_y(self) -&gt; None:
+    &#39;&#39;&#39;
+    Scrolls the screen vertically if player is above certain screen level
+    &#39;&#39;&#39;
+    player = self.player.sprite
+
+    if player.rect.y &lt; settings.scroll_border and player.direction.y &lt; 0:
+        self.world_shift = settings.scroll_speed
+        player.rect.y += settings.scroll_speed
+        for missile in self.missiles.sprites():
+            missile.rect.y += settings.scroll_speed
+
+        # world starts descending, missiles spawn, collapse platforms spawn only after first scroll
+        if self.world_descend_speed == 0:
+            self.world_descend_speed = settings.game_difficulty[0][&#39;world_descend_speed&#39;]
+            self.missile_queue()
+            self.spawn_missiles = True
+            self.spawn_collapse_platforms = True
+    else:
+        self.world_shift = 0</code></pre>
+</details>
+</dd>
+<dt id="game.Game.set_game_difficulty"><code class="name flex">
+<span>def <span class="ident">set_game_difficulty</span></span>(<span>self, parameters: Dict[str, int]) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets game difficulty - world descend speed and missile spawn frequency range</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>parameters</code></strong> :&ensp;<code>Dict[str, int]</code></dt>
+<dd>a dictionary of certain difficulty parameters</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_game_difficulty(self, parameters: Dict[str, int]) -&gt; None:
+    &#39;&#39;&#39;
+    Sets game difficulty - world descend speed and missile spawn frequency range
+
+    Args:
+        parameters (Dict[str, int]): a dictionary of certain difficulty parameters
+    &#39;&#39;&#39;
+    self.world_descend_speed = parameters[&#39;world_descend_speed&#39;]
+    self.missile_spawn_frequency_down = parameters[&#39;missile_spawn_frequency_down&#39;]
+    self.missile_spawn_frequency_up = parameters[&#39;missile_spawn_frequency_up&#39;]</code></pre>
+</details>
+</dd>
+<dt id="game.Game.spawn_missile"><code class="name flex">
+<span>def <span class="ident">spawn_missile</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Spawns a missile on random x position, 100 pixels above screen</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def spawn_missile(self) -&gt; None:
+    &#39;&#39;&#39;
+    Spawns a missile on random x position, 100 pixels above screen
+    &#39;&#39;&#39;
+    missile = Missile(
+        (randint(0, settings.screen_width - settings.missile_dimensions[0]), -100))
+    self.missiles.add(missile)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.vertical_movement_and_collision"><code class="name flex">
+<span>def <span class="ident">vertical_movement_and_collision</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Applies gravity to the player, makes player land on a platform (and then performs special platform action)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vertical_movement_and_collision(self) -&gt; None:
+    &#39;&#39;&#39;
+    Applies gravity to the player, makes player land on a platform (and then performs special platform action)
+    &#39;&#39;&#39;
+    self.player.sprite.apply_gravity()
+    player = self.player.sprite
+
+    for platform in self.platforms.sprites():
+        stands = (platform.rect.top == player.rect.bottom and player.rect.right &gt;=
+                  platform.rect.left and player.rect.left &lt;= platform.rect.right)
+        if platform.rect.colliderect(player.rect) or stands:
+            if player.direction.y &gt; 0 and player.rect.bottom - player.direction.y - 1 &lt;= platform.rect.top:
+                player.rect.bottom = platform.rect.top
+                player.direction.y = 0
+                if self.score &lt; platform.number:
+                    self.score = platform.number
+                self.platform_type_action(platform)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="game.Game" href="#game.Game">Game</a></code></h4>
+<ul class="">
+<li><code><a title="game.Game.adjust_game_difficulty" href="#game.Game.adjust_game_difficulty">adjust_game_difficulty</a></code></li>
+<li><code><a title="game.Game.event_queue" href="#game.Game.event_queue">event_queue</a></code></li>
+<li><code><a title="game.Game.game_over" href="#game.Game.game_over">game_over</a></code></li>
+<li><code><a title="game.Game.generate_new_platform" href="#game.Game.generate_new_platform">generate_new_platform</a></code></li>
+<li><code><a title="game.Game.horizontal_movement" href="#game.Game.horizontal_movement">horizontal_movement</a></code></li>
+<li><code><a title="game.Game.manage_platforms_and_missiles" href="#game.Game.manage_platforms_and_missiles">manage_platforms_and_missiles</a></code></li>
+<li><code><a title="game.Game.missile_queue" href="#game.Game.missile_queue">missile_queue</a></code></li>
+<li><code><a title="game.Game.new_game" href="#game.Game.new_game">new_game</a></code></li>
+<li><code><a title="game.Game.platform_collapse" href="#game.Game.platform_collapse">platform_collapse</a></code></li>
+<li><code><a title="game.Game.platform_type_action" href="#game.Game.platform_type_action">platform_type_action</a></code></li>
+<li><code><a title="game.Game.resume_collapse" href="#game.Game.resume_collapse">resume_collapse</a></code></li>
+<li><code><a title="game.Game.resume_missiles" href="#game.Game.resume_missiles">resume_missiles</a></code></li>
+<li><code><a title="game.Game.run" href="#game.Game.run">run</a></code></li>
+<li><code><a title="game.Game.scroll_y" href="#game.Game.scroll_y">scroll_y</a></code></li>
+<li><code><a title="game.Game.set_game_difficulty" href="#game.Game.set_game_difficulty">set_game_difficulty</a></code></li>
+<li><code><a title="game.Game.spawn_missile" href="#game.Game.spawn_missile">spawn_missile</a></code></li>
+<li><code><a title="game.Game.vertical_movement_and_collision" href="#game.Game.vertical_movement_and_collision">vertical_movement_and_collision</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,3 +1,7 @@
+'''
+Module with sqlalchemy database table and functions concerning game's scoreboard
+'''
+
 import os
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, select, delete
@@ -12,6 +16,14 @@ base.metadata.create_all(engine)
 
 
 class Scoreboard(base):
+    '''
+    Scoreboard reprents a database table with top 10 scores
+
+    Attributes:
+        id (Column[int]): score's ID
+        nick (Column[Text]): nick of score's gainer
+        score (Column[int]): score 
+    '''
     __tablename__ = 'scoreboard'
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     nick = Column(String, nullable=False)
@@ -19,6 +31,15 @@ class Scoreboard(base):
 
 
 def is_good_enough_score(score: int) -> bool:
+    '''
+    Tells if score is in top 10
+
+    Args:
+        score (int): player's final score
+
+    Returns:
+        bool: True if score is in top 10, False otherwise
+    '''
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -29,6 +50,13 @@ def is_good_enough_score(score: int) -> bool:
 
 
 def add_score(score: int, nick: str) -> None:
+    '''
+    Adds score to scoreboard database table
+
+    Args:
+        score (int): score to add
+        nick (str): score gainer's nick
+    '''
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -46,6 +74,12 @@ def add_score(score: int, nick: str) -> None:
 
 
 def get_scoreboard() -> List[Scoreboard]:
+    '''
+    Gets a list of top 10 scores
+
+    Returns:
+        List[Scoreboard]: list of Scoreboard's table rows
+    '''
     Session = sessionmaker(bind=engine)
     session = Session()
 

@@ -1,3 +1,7 @@
+'''
+Module with specific game's settings
+'''
+
 import os
 
 # title and logo
@@ -7,9 +11,9 @@ logo_path = os.path.join(os.path.dirname(
 logo_width = 400
 logo_height = 400
 
-# might change for images
+# main colors
 background_color = 'black'
-player_and_text_color = 'red'  
+player_and_text_color = 'red'
 missile_color = 'orange'
 
 # fonts
@@ -32,7 +36,7 @@ screen_height = 800
 start_pos = (map_width / 2, map_height - 1)
 player_dimensions = (30, 60)
 
-# speed settings
+# physics
 horizontal_speed = 9
 scroll_speed = 10
 scroll_border = 2*screen_height/5
@@ -61,7 +65,7 @@ vertical_platform_color = "violet"
 vertical_platform_speed = 2
 vertical_platform_range = 27 * vertical_platform_speed
 
-# missiles - dimensions, speed
+# missiles
 missile_dimensions = (20, 40)
 missile_speed = 4
 
