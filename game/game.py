@@ -11,14 +11,14 @@ import scoreboard
 
 
 class Game:
-    def __init__(self, surface, fonts):
+    def __init__(self, surface, logo, fonts):
 
         # Custom events setup
         self.PLATFORM_COLLAPSE = pygame.USEREVENT + 1
         self.SPAWN_MISSILE = pygame.USEREVENT + 2
 
         # game setup
-        self.display = Display(surface, fonts)
+        self.display = Display(surface, logo, fonts)
         self.state = 'init'
 
     def new_game(self):
@@ -44,7 +44,7 @@ class Game:
 
         # platforms
         start_platform = Platform(
-            (0, settings.map_heigth-1), settings.map_width, 'normal', 0)
+            (0, settings.map_height-1), settings.map_width, 'normal', 0)
         self.platforms.add(start_platform)
         top_level, top_number = start_platform.map_coords.y, 0
         for i in range(9):
@@ -70,8 +70,8 @@ class Game:
         if not self.spawn_collapse_platforms:
             types = types[:-1]
 
-        platform = Platform((randint(0, settings.map_width - 3), top_level - randint(settings.platform_heigth_difference[0],
-                                                                                     settings.platform_heigth_difference[1])), randint(
+        platform = Platform((randint(0, settings.map_width - 3), top_level - randint(settings.platform_height_difference[0],
+                                                                                     settings.platform_height_difference[1])), randint(
             settings.platform_length[0], settings.platform_length[1]), choice(types), top_number + 1)
         return platform
 
@@ -234,22 +234,22 @@ class Game:
                         self.pause_time = pygame.time.get_ticks()
             else:
                 if event.type == pygame.KEYDOWN:
-                    if self.state == 'start' and event.key == pygame.K_RETURN:  # ENTER
+                    if self.state == 'start' and event.key == pygame.K_RETURN: # ENTER
                         self.new_game()
                         self.state = 'active'
-                    elif self.state == 'pause' and event.key == pygame.K_ESCAPE:  # ESC
+                    elif self.state == 'pause' and event.key == pygame.K_ESCAPE: # ESC
                         self.state = 'active'
                         if self.collapse_time != -1:
                             self.resume_collapse()
                         if self.missile_time != -1:
                             self.resume_missiles()
-                    elif self.state == 'game_over' and event.key == pygame.K_RETURN:  # ENTER
+                    elif self.state == 'game_over' and event.key == pygame.K_RETURN: # ENTER
                         if scoreboard.is_good_enough_score(self.score):
                             self.display.input("")
                             self.state = 'input'
                         else:
-                            self.new_game()
-                            self.state = 'active'
+                            self.display.scoreboard()
+                            self.state = 'start'
                     elif self.state == 'input':  # get nick from user
                         if event.key == pygame.K_RETURN:
                             if self.nick:

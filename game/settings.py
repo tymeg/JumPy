@@ -1,7 +1,16 @@
-# title and colors
-title = "Pawel Jumper"  # will probably change xD
-background_color = 'black'  # might change for some image
-player_and_text_color = 'red'  # might change for some image
+import os
+import pygame
+
+# title and logo
+title = "JumPy"
+logo_path = os.path.join(os.path.dirname(
+    os.path.abspath(__file__)), os.path.join("assets", "arrow.png"))
+logo_width = 400
+logo_height = 400
+
+# might change for images
+background_color = 'black'
+player_and_text_color = 'red'  
 missile_color = 'orange'
 
 # fonts
@@ -14,14 +23,14 @@ fps = 60
 
 # map and screen dimensions
 map_width = 10
-map_heigth = 15
+map_height = 15
 tile_size = 54
 
 screen_width = map_width * tile_size
 screen_height = 800
 
 # player
-start_pos = (map_width / 2, map_heigth - 1)
+start_pos = (map_width / 2, map_height - 1)
 player_dimensions = (30, 60)
 
 # speed settings
@@ -36,7 +45,7 @@ platform_types = ['normal', 'normal', 'normal', 'normal',
                   'bounce', 'horizontal', 'vertical', 'collapse']
 platform_thickness = 10
 platform_length = [2, 3]
-platform_heigth_difference = [2, 4]
+platform_height_difference = [2, 4]
 
 normal_platform_color = "white"
 

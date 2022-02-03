@@ -24,7 +24,7 @@ def is_good_enough_score(score):
     scores_ascending = session.execute(select(Scoreboard).order_by(
         Scoreboard.score)).scalars().all()
 
-    return len(scores_ascending) < 10 or score > int(scores_ascending[0].score)
+    return len(scores_ascending) < 10 or score > scores_ascending[0].score
 
 
 def add_score(score, nick):
@@ -37,10 +37,10 @@ def add_score(score, nick):
 
     # delete last score(s)
     if len(scores_before) == 10:
-        last_score = session.execute(select(Scoreboard).order_by(
-            Scoreboard.score)).scalars().all()[0].score
+        last_score_id = session.execute(select(Scoreboard).order_by(
+            Scoreboard.score)).scalars().all()[0].id
         session.execute(delete(Scoreboard).where(
-            Scoreboard.score == last_score))
+            Scoreboard.id == last_score_id))
         session.commit()
 
 
