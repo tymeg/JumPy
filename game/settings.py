@@ -35,6 +35,8 @@ jump_speed = -22
 platform_types = ['normal', 'normal', 'normal', 'normal',
                   'bounce', 'horizontal', 'vertical', 'collapse']
 platform_thickness = 10
+platform_length = [2, 3]
+platform_heigth_difference = [2, 4]
 
 normal_platform_color = "white"
 
@@ -42,6 +44,7 @@ bounce_platform_color = "green"
 bounce_speed = -30
 
 collapse_platform_color = "grey40"
+collapse_duration = 500
 
 horizontal_platform_color = "dodgerblue"
 horizontal_platform_speed = 4

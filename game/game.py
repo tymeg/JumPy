@@ -31,7 +31,9 @@ class Game:
         self.collapsing_platforms = []
         self.world_shift = 0
         self.spawn_missiles = False
+        self.missile_time = -1
         self.spawn_collapse_platforms = False
+        self.collapse_time = -1
 
         self.set_game_difficulty(settings.game_difficulty[0])
         self.world_descend_speed = 0
@@ -64,14 +66,14 @@ class Game:
         self.missiles.add(missile)
 
     def generate_new_platform(self, top_level, top_number):
+        types = settings.platform_types
         if not self.spawn_collapse_platforms:
-            platform = Platform((randint(0, 7), top_level - randint(2, 4)), randint(
-                2, 3), choice(settings.platform_types[:-1]), top_number + 1)
-            return platform
-        else:
-            platform = Platform((randint(0, 7), top_level - randint(2, 4)),
-                                randint(2, 3), choice(settings.platform_types), top_number + 1)
-            return platform
+            types = types[:-1]
+
+        platform = Platform((randint(0, settings.map_width - 3), top_level - randint(settings.platform_heigth_difference[0],
+                                                                                     settings.platform_heigth_difference[1])), randint(
+            settings.platform_length[0], settings.platform_length[1]), choice(types), top_number + 1)
+        return platform
 
     def manage_platforms_and_missiles(self):
         bottom_platform = self.platforms.sprites()[0]
@@ -116,7 +118,8 @@ class Game:
             player.jump()
             player.jump_speed = settings.jump_speed
         elif platform.type == 'collapse' and not self.collapsing:
-            pygame.time.set_timer(self.PLATFORM_COLLAPSE, 500, 1)
+            pygame.time.set_timer(self.PLATFORM_COLLAPSE,
+                                  settings.collapse_duration, 1)
             self.collapsing_platforms.append(platform)
             self.collapsing = True
         elif platform.type == 'horizontal':
@@ -191,25 +194,44 @@ class Game:
             return True
         return False
 
+    def resume_collapse(self):
+        remaining_collapse_time = self.collapse_time - self.pause_time
+        pygame.time.set_timer(self.PLATFORM_COLLAPSE,
+                              remaining_collapse_time, 1)
+        self.collapse_time = -1
+
+    def resume_missiles(self):
+        remaining_missile_time = self.missile_time - self.pause_time
+        pygame.time.set_timer(self.SPAWN_MISSILE, remaining_missile_time, 1)
+        self.missile_time = -1
+
     def event_queue(self):
         for event in pygame.event.get():
             # quit game
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if self.state == 'active' or self.state == 'pause':
+                # game events
+                if event.type == self.PLATFORM_COLLAPSE:
+                    if self.state == 'active':
+                        self.platform_collapse()
+                    else:
+                        self.collapse_time = pygame.time.get_ticks()
+                if event.type == self.SPAWN_MISSILE:
+                    if self.spawn_collapse_platforms:
+                        if self.state == 'active':
+                            self.spawn_missile()
+                            self.missile_queue()
+                        else:
+                            self.missile_time = pygame.time.get_ticks()
             if self.state == 'active':
                 if event.type == pygame.KEYDOWN:
                     # pause
                     if event.key == pygame.K_ESCAPE:
                         self.display.pause()
                         self.state = 'pause'
-                # game events
-                if event.type == self.PLATFORM_COLLAPSE:
-                    self.platform_collapse()
-                if event.type == self.SPAWN_MISSILE:
-                    if self.spawn_collapse_platforms:
-                        self.spawn_missile()
-                        self.missile_queue()
+                        self.pause_time = pygame.time.get_ticks()
             else:
                 if event.type == pygame.KEYDOWN:
                     if self.state == 'start' and event.key == pygame.K_RETURN:  # ENTER
@@ -217,6 +239,10 @@ class Game:
                         self.state = 'active'
                     elif self.state == 'pause' and event.key == pygame.K_ESCAPE:  # ESC
                         self.state = 'active'
+                        if self.collapse_time != -1:
+                            self.resume_collapse()
+                        if self.missile_time != -1:
+                            self.resume_missiles()
                     elif self.state == 'game_over' and event.key == pygame.K_RETURN:  # ENTER
                         if scoreboard.is_good_enough_score(self.score):
                             self.display.input("")
