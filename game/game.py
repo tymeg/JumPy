@@ -328,7 +328,7 @@ class Game:
                     else:
                         self.collapse_time = pygame.time.get_ticks()
                 if event.type == self.SPAWN_MISSILE:
-                    if self.spawn_collapse_platforms:
+                    if self.spawn_missiles:
                         if self.state == 'active':
                             self.spawn_missile()
                             self.missile_queue()
