@@ -22,7 +22,7 @@ class Game:
 
     Attributes:
         display (Display): a display object to which Game delegates drawing things to the screen
-        state (str): game state - init | menu | start | pause | game_over | scoreboard | input
+        state (int): game state - init | menu | start | pause | game_over | scoreboard | input
         nick (str): current player's nick
         score (int): current score
         platforms (pygame.sprite.Group): group of current platforms in the game
@@ -50,7 +50,7 @@ class Game:
 
         # game setup
         self.display = Display(surface, logo, fonts)
-        self.state = 'init'
+        self.state = self.States.init
 
 # ============================ NEW GAME ===============================
 
@@ -60,7 +60,7 @@ class Game:
         '''
         # reset
         pygame.event.clear()
-        self.state = 'active'
+        self.state = self.States.active
         self.nick = ""
         self.score = 0
         self.collapsing = False
@@ -311,6 +311,12 @@ class Game:
         pygame.time.set_timer(self.SPAWN_MISSILE, remaining_missile_time, 1)
         self.missile_time = -1
 
+    class States:
+        '''
+        Simple "enum" class for game states
+        '''
+        init, start, menu, active, pause, game_over, nick_input = range(7)
+    
     def event_queue(self) -> None:
         '''
         Main event queue. Handles game quitting, custom events and different game states
@@ -320,52 +326,52 @@ class Game:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if self.state == 'active' or self.state == 'pause':
+            if self.state == self.States.active or self.state == self.States.pause:
                 # game events
                 if event.type == self.PLATFORM_COLLAPSE:
-                    if self.state == 'active':
+                    if self.state == self.States.active:
                         self.platform_collapse()
                     else:
                         self.collapse_time = pygame.time.get_ticks()
                 if event.type == self.SPAWN_MISSILE:
                     if self.spawn_missiles:
-                        if self.state == 'active':
+                        if self.state == self.States.active:
                             self.spawn_missile()
                             self.missile_queue()
                         else:
                             self.missile_time = pygame.time.get_ticks()
-            if self.state == 'active':
+            if self.state == self.States.active:
                 if event.type == pygame.KEYDOWN:
                     # pause
                     if event.key == pygame.K_ESCAPE:
                         self.display.pause()
-                        self.state = 'pause'
+                        self.state = self.States.pause
                         self.pause_time = pygame.time.get_ticks()
             else:
                 if event.type == pygame.KEYDOWN:
                     # handle different game states
-                    if self.state == 'start' and event.key == pygame.K_RETURN:  # ENTER
+                    if self.state == self.States.start and event.key == pygame.K_RETURN:  # ENTER
                         self.new_game()
-                        self.state = 'active'
-                    elif self.state == 'pause' and event.key == pygame.K_ESCAPE:  # ESC
-                        self.state = 'active'
+                        self.state = self.States.active
+                    elif self.state == self.States.pause and event.key == pygame.K_ESCAPE:  # ESC
+                        self.state = self.States.active
                         if self.collapse_time != -1:
                             self.resume_collapse()
                         if self.missile_time != -1:
                             self.resume_missiles()
-                    elif self.state == 'game_over' and event.key == pygame.K_RETURN:  # ENTER
+                    elif self.state == self.States.game_over and event.key == pygame.K_RETURN:  # ENTER
                         if scoreboard.is_good_enough_score(self.score):
                             self.display.input("")
-                            self.state = 'input'
+                            self.state = self.States.nick_input
                         else:
                             self.display.scoreboard()
-                            self.state = 'start'
-                    elif self.state == 'input':  # get nick from user
+                            self.state = self.States.start
+                    elif self.state == self.States.nick_input:  # get nick from user
                         if event.key == pygame.K_RETURN:
                             if self.nick:
                                 scoreboard.add_score(self.score, self.nick)
                                 self.display.scoreboard()
-                                self.state = 'start'
+                                self.state = self.States.start
                         elif event.key == pygame.K_BACKSPACE:
                             if self.nick:
                                 self.nick = self.nick[:-1]
@@ -381,7 +387,7 @@ class Game:
         # event queue
         self.event_queue()
 
-        if self.state == 'active':
+        if self.state == self.States.active:
             # ====== STATE ======
             # player
             self.horizontal_movement()
@@ -406,8 +412,8 @@ class Game:
             # game over
             if self.game_over():
                 self.display.game_over()
-                self.state = 'game_over'
+                self.state = self.States.game_over
 
-        elif self.state == 'init':
+        elif self.state == self.States.init:
             self.display.menu()
-            self.state = 'start'
+            self.state = self.States.start
