@@ -89,3 +89,4 @@ ENV/
 game/scoreboard.sqlite
 
 todo.txt
+game/exe/

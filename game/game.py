@@ -4,11 +4,11 @@ from typing import Dict
 from random import randint, choice
 
 import settings
+import scoreboard
 from display import Display
 from platforms import Platform
 from player import Player
 from missile import Missile
-import scoreboard
 
 
 class Game:

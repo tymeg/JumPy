@@ -12,7 +12,6 @@ from typing import List
 base = declarative_base()
 engine = create_engine('sqlite:///' + os.path.join(os.path.dirname(
     os.path.abspath(__file__)), "scoreboard.sqlite"), echo=True)
-base.metadata.create_all(engine)
 
 
 class Scoreboard(base):
@@ -29,6 +28,7 @@ class Scoreboard(base):
     nick = Column(String, nullable=False)
     score = Column(Integer, nullable=False)
 
+base.metadata.create_all(engine)
 
 def is_good_enough_score(score: int) -> bool:
     '''
