@@ -67,7 +67,7 @@ vertical_platform_range = 27 * vertical_platform_speed
 
 # missiles
 missile_dimensions = (20, 40)
-missile_speed = 4
+missile_speed = 3
 
 # score thresholds and corresponding game difficulties
 score_thresholds = [25, 50, 100, 150]
