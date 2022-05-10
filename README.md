@@ -1,3 +1,5 @@
+
+
 JumPy - a jumping icytower-ish game made in Pygame.
 
 How high can you get? You think it's that simple? There are collapsing, vertically/horizontally moving and bounce platforms, falling deadly missiles and the game is getting faster and faster!
@@ -20,4 +22,6 @@ make run (runs python3 game/main.py)
 
 - Run on Windows:  
 pip install -r requirements.txt  
-python game\main.py  
+python game\main.py
+
+![2022-05-10](https://user-images.githubusercontent.com/73033203/167671755-0636eabf-2383-438f-b029-201232055d52.png)
